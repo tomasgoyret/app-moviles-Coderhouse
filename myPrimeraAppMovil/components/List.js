@@ -1,25 +1,62 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View,FlatList } from 'react-native';
+import { Alert, Button, Text, TextInput, View,FlatList, Modal } from 'react-native';
+import styles from './styles';
 
 export default function List() {
 
   const [text, setText] = useState('')
   const [task, setTask] = useState([])
 
+  const[modal, setModal] = useState(false)
+  const[tareaSelected, setTaskSelected] =useState({})
+
+  // const [taskDone,setTaskDone] = useState([])
+
   const handleChangeText = (text) => {
     setText(text)
   }
   const handleTask = () => {
+    if(!text){
+      return Alert.alert('el campo de la tarea no puede estar vacío')
+    }
     setTask([
       ...task,
       {
         nro: Math.random().toString(),
         tarea: text,
+        done: false
       },
     ])
     setText('')
-    Alert.alert('Tarea agregada')
+    // Alert.alert('Tarea agregada')
+  }
+
+
+
+  const handleDone = (item) =>{
+    const {done} = item
+    done = true
+    // setTask(task.filter(e=>e.nro != nro))
+    // setTaskDone([
+    //   ...taskDone,
+    // item
+    // ])
+  }
+  const handleDelete = (tarea) =>{
+    setModal(true)
+    setTaskSelected(tarea)
+  }
+  const handleConfirmDelete = () => {
+    const {nro} = tareaSelected
+    setTask(task.filter(e=>e.nro != nro))
+    setModal(false)
+    setTaskSelected({})
+  }
+
+  const handleVolver = () => {
+    setModal(false)
+    setTaskSelected({})
   }
 
   return (
@@ -31,62 +68,57 @@ export default function List() {
         <TextInput value={text} onChangeText={handleChangeText} style={styles.textInput} placeholder='Escribe la tarea que quieres realizar'></TextInput>
         <Button color='black' onPress={handleTask} title='Agregar tarea'></Button>
       
-
+      {task.length != 0 ? <Text style={styles.text}>Mis tareas</Text> : <Text style={styles.text}>No tienes tareas por realizar</Text>}
       <FlatList
         data={task}
         renderItem={({ item }) => (
             <View style={styles.containerTarea}>
               <Text style={styles.tarea}>{item.tarea}</Text>
-              {/* <Button onPress={handleOnDelete(item)} title="X" /> */}
+              <Button onPress={()=>handleDelete(item)} title="X" />
+              {/* <Button onPress={() => handleDone(item)} title = 'Hecho'/> */}
             </View>
           )
         }
         keyExtractor={item => item.nro}
       />
 
+
+      {/* {taskDone.length != 0 ? <Text style={styles.text}>Tareas Finalizadas</Text> : <Text style={styles.text}>No tienes tareas completadas</Text>} */}
+
+      {/* <FlatList
+        data={taskDone}
+        renderItem={({ item }) => (
+            <View style={styles.containerTarea}>
+              <Text style={styles.tarea}>{item.tarea}</Text>
+              <Button onPress={()=>handleDelete(item)} title="X" />
+              <Button onPress={() => handleDone(item)} title = 'Hecho'/>
+            </View>
+          )
+        }
+        keyExtractor={item => item.nro}
+      /> */}
+
+<Modal animationType='slide' visible={modal}>
+        <View>
+          <View>
+            <Text>¿Está seguro que desea eliminar?</Text>
+            <Text>{tareaSelected && tareaSelected.tarea}</Text>
+          </View>
+          <View>
+            <Button
+              onPress={handleConfirmDelete}
+              title="Confirmar"
+            />
+            <Button
+              onPress={handleVolver}
+              title="Volver"
+            />
+          </View>
+        </View>
+      </Modal>
+
   </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffa59e',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  title: {
-    marginTop: 30,
-    fontSize: 80,
-    fontWeight: 'bold',
-    color: 'white'
-  },
-  text: {
-    color: 'white',
-    marginTop: 20,
-    marginBottom: 20,
-    fontSize: 20
-  },
-  textInput: {
-    marginTop: 20,
-    color: 'white',
-    marginBottom: 20
-  },
-  tarea:{
-    color: 'white',
-    marginTop: 20,
-    marginBottom: 20,
-    fontSize: 20
-  },
-  containerTarea:{
-    borderWidth: 3,
-    borderColor:'white',
-    borderStyle: 'solid',
-    padding: 5,
-    marginVertical: 5, 
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  }
-});
