@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
       fontSize: 20
     },
     textInput: {
+      borderStyle: 'solid',
+      borderColor: 'white',
       marginTop: 20,
       color: 'white',
       marginBottom: 20
@@ -28,13 +30,17 @@ const styles = StyleSheet.create({
       color: 'white',
       marginTop: 10,
       marginBottom: 10,
-      fontSize: 20
+      fontSize: 20,
     },
-    done:{
-        textDecorationLine: 'line-through'
+    tareaDone:{
+      color: 'black',
+      marginTop: 10,
+      marginBottom: 10,
+      fontSize: 20,
+      textDecorationLine: 'line-through'
     },
     containerTarea:{
-      borderWidth: 3,
+      borderWidth: 1,
       borderColor:'white',
       borderStyle: 'solid',
       padding: 5,
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-    }
+    },
   });
 
   export default styles
