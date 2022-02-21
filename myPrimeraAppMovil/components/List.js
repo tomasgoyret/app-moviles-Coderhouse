@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Text, TextInput, View, FlatList, Modal } from 'react-native';
 import Completed from './CompletedTask';
+import Pending from './PendingTasks';
 import styles from './styles';
 
 export default function List() {
@@ -92,25 +93,17 @@ export default function List() {
 
 
       {mostrarMisTareas &&
-        <View>
-          <Text style={styles.text}>Tareas pendientes</Text>
-          <FlatList
-            data={task}
-            renderItem={({ item }) => (
-              <View style={styles.containerTarea}>
-                <Text style={styles.tarea}>{item.tarea}</Text>
-                <Button style={styles.boton} color='black' onPress={() => handleDelete(item)} title="X" />
-                <Button color='black' onPress={() => handleDone(item)} title='Finalizada' />
-              </View>
-            )
-            }
-            keyExtractor={item => item.nro}
-          />
-        </View>}
+        (<View>
+          <Pending
+          task={task}
+          handleDone={handleDone}
+          handleDelete={handleDelete}
+          ></Pending>
+          
+        </View>)}
 
 
       {mostrarTaskDone &&
-
         (<View>
       <Completed
       taskDone={taskDone} 
