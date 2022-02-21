@@ -85,10 +85,10 @@ export default function List() {
 
       <TextInput value={text} onChangeText={handleChangeText} style={styles.textInput} placeholder='Escribe la tarea que quieres realizar'></TextInput>
 
-      <Button color='black' onPress={handleTask} title='Agregar tarea'></Button>
+      <Button color='#8a151b' onPress={handleTask} title='Agregar tarea'></Button>
       <View>
-        <Button color='#8f0334' onPress={handleTareasFinalizadas} title='Tareas finalizadas'></Button>
-        <Button color='#176300' onPress={handleMistareas} title='Mis tareas'></Button>
+        <Button color='#585340' onPress={handleTareasFinalizadas} title='Tareas finalizadas'></Button>
+        <Button color='#b7ae9d' onPress={handleMistareas} title='Mis tareas'></Button>
       </View>
 
 

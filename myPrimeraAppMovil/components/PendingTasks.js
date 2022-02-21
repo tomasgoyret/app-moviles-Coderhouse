@@ -4,7 +4,7 @@ import styles from './styles';
 export default function Pending ({handleDelete, handleDone, task}) {
     return (
         <View>
-            <Text style={styles.text}>Tareas pendientes</Text>
+            <Text style={styles.text}>Tareas Pendientes</Text>
           <FlatList
             data={task}
             renderItem={({ item }) => (
