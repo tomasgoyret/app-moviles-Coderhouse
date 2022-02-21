@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
     },
+    containerBotones:{
+      flex: 1,
+      flexDirection: 'row',
+    }
   });
 
   export default styles

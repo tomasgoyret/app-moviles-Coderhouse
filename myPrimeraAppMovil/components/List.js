@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Alert, Button, Text, TextInput, View, FlatList, Modal } from 'react-native';
+import { Button, Text, TextInput, View, FlatList, Modal } from 'react-native';
+import Completed from './CompletedTask';
 import styles from './styles';
 
 export default function List() {
@@ -11,7 +11,10 @@ export default function List() {
   const [modal, setModal] = useState(false)
   const [tareaSelected, setTaskSelected] = useState({})
 
-  const [taskDone,setTaskDone] = useState([])
+  const [taskDone, setTaskDone] = useState([])
+  const [mostrarTaskDone, setMostrarTaskDone] = useState(false)
+
+  const [mostrarMisTareas, setMostrarMisTareas] = useState(false)
 
   const handleChangeText = (text) => {
     setText(text)
@@ -31,13 +34,21 @@ export default function List() {
     alert(`Tarea "${text}" agregada`)
   }
 
+  const handleTareasFinalizadas = () => {
+    setMostrarMisTareas(false)
+    setMostrarTaskDone(true)
+  }
 
+  const handleMistareas = () => {
+    setMostrarMisTareas(true)
+    setMostrarTaskDone(false)
+  }
 
   const handleDone = (item) => {
-    setTask(task.filter(e=>e.nro != item.nro))
+    setTask(task.filter(e => e.nro != item.nro))
     setTaskDone([
       ...taskDone,
-    item
+      item
     ])
   }
 
@@ -58,74 +69,77 @@ export default function List() {
     setTaskSelected({})
   }
 
-  const handleInProgress = (item) =>{
+  const handleInProgress = (item) => {
     setTask([
       ...task,
       item
     ])
-    setTaskDone(taskDone.filter(e=> e.nro != item.nro))
+    setTaskDone(taskDone.filter(e => e.nro != item.nro))
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ToDo App</Text>
-
-
       <Text style={styles.text}>La app para gestionar tus tareas</Text>
+
       <TextInput value={text} onChangeText={handleChangeText} style={styles.textInput} placeholder='Escribe la tarea que quieres realizar'></TextInput>
+
       <Button color='black' onPress={handleTask} title='Agregar tarea'></Button>
-    
-           {task.length != 0 ? <Text style={styles.text}>Tareas pendientes</Text> : <Text style={styles.text}>No tienes tareas por realizar</Text>}
-           <FlatList
-             data={task}
-             renderItem={({ item }) => (
-                 <View style={styles.containerTarea}>
-                   <Text style={styles.tarea}>{item.tarea}</Text>
-                   <Button style={styles.boton} color='black' onPress={()=>handleDelete(item)} title="X" />
-                   <Button color='black' onPress={() =>handleDone(item)} title = 'Finalizada'/>
-                 </View>
-               )
-             }
-             keyExtractor={item => item.nro}
-           />
-   
+      <View>
+        <Button color='#8f0334' onPress={handleTareasFinalizadas} title='Tareas finalizadas'></Button>
+        <Button color='#176300' onPress={handleMistareas} title='Mis tareas'></Button>
+      </View>
 
-    {taskDone.length != 0 ? <Text style={styles.text}>Tareas Finalizadas</Text> : <Text style={styles.text}>No tienes tareas completadas</Text>}
 
-           <FlatList
-            data={taskDone}
+      {mostrarMisTareas &&
+        <View>
+          <Text style={styles.text}>Tareas pendientes</Text>
+          <FlatList
+            data={task}
             renderItem={({ item }) => (
-                <View style={styles.containerTarea}>
-                  <Text style={styles.tareaDone}>{item.tarea}</Text>
-                  <Button color='black' onPress={()=>handleDelete(item)} title="X" />
-                  <Button color='black' onPress={() =>handleInProgress(item)} title = 'En progreso'/>
-                </View>
-              )
+              <View style={styles.containerTarea}>
+                <Text style={styles.tarea}>{item.tarea}</Text>
+                <Button style={styles.boton} color='black' onPress={() => handleDelete(item)} title="X" />
+                <Button color='black' onPress={() => handleDone(item)} title='Finalizada' />
+              </View>
+            )
             }
             keyExtractor={item => item.nro}
           />
+        </View>}
 
-    <Modal animationType='slide' visible={modal}>
-            <View>
-              <View>
-                <Text>¿Está seguro que desea eliminar?</Text>
-                <Text>{tareaSelected && tareaSelected.tarea}</Text>
-              </View>
-              <View>
-                <Button
-                  onPress={handleConfirmDelete}
-                  title="Confirmar"
-                />
-                <Button
-                  onPress={handleVolver}
-                  title="Volver"
-                />
-              </View>
-            </View>
-          </Modal>
+
+      {mostrarTaskDone &&
+
+        (<View>
+      <Completed
+      taskDone={taskDone} 
+      handleDelete= {handleDelete}
+      handleInProgress= {handleInProgress}
+      ></Completed>
+        </View>)}
+
+
+
+      <Modal animationType='slide' visible={modal}>
+        <View>
+          <View>
+            <Text>¿Está seguro que desea eliminar?</Text>
+            <Text>{tareaSelected && tareaSelected.tarea}</Text>
+          </View>
+          <View>
+            <Button
+              onPress={handleConfirmDelete}
+              title="Confirmar"
+            />
+            <Button
+              onPress={handleVolver}
+              title="Volver"
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
-    //   </View>
-    //     </View>
   );
 }
 
