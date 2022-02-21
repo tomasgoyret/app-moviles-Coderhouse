@@ -11,13 +11,15 @@ const styles = StyleSheet.create({
       marginTop: 30,
       fontSize: 80,
       fontWeight: 'bold',
-      color: 'white'
+      color: 'white',
+      fontFamily: 'RalewayBold'
     },
     text: {
       color: 'white',
       marginTop: 20,
       marginBottom: 20,
-      fontSize: 20
+      fontSize: 20,
+      fontFamily: 'Raleway'
     },
     textInput: {
       borderStyle: 'solid',
@@ -50,8 +52,11 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     containerBotones:{
-      flex: 1,
+      display: 'flex',
       flexDirection: 'row',
+    },
+    botones:{
+      fontSize: 38,
     }
   });
 

@@ -11,7 +11,7 @@ export default function Completed ({handleDelete, handleInProgress, taskDone}) {
               renderItem={({ item }) => (
                 <View style={styles.containerTarea}>
                   <Text style={styles.tareaDone}>{item.tarea}</Text>
-                  <Button color='black' onPress={() => handleDelete(item)} title="X" />
+                  <Button style={styles.botones} color='black' onPress={() => handleDelete(item)} title="X" />
                   <Button color='black' onPress={() => handleInProgress(item)} title='En progreso' />
                 </View>
               )
