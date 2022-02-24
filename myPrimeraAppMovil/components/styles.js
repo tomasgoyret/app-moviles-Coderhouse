@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#accecd',
+      backgroundColor: '#283d3b',
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
       marginTop: 30,
       fontSize: 80,
       fontWeight: 'bold',
-      color: 'white',
+      color: '#edddd4',
       fontFamily: 'RalewayBold'
     },
     text: {
-      color: 'white',
+      color: '#edddd4',
       marginTop: 20,
       marginBottom: 20,
       fontSize: 20,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
       marginBottom: 20
     },
     tarea:{
-      color: 'white',
+      color: '#197278',
       marginTop: 10,
       marginBottom: 10,
       fontSize: 20,

@@ -1,0 +1,5 @@
+var colorBackground = '#283d3b'
+var colorFonts = '#edddd4'
+var colorBlue = '#197278'
+var colorLightRed = '#c44536'
+var colorDarkRed = '#772e25'
