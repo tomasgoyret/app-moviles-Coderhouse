@@ -1,4 +1,5 @@
 import List from './components/List';
+import Home from './components/Home/Home';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native'
@@ -16,6 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='To Do' component={Home}/>
           <Stack.Screen name='List' component={List}/>
         </Stack.Navigator>
     </NavigationContainer>

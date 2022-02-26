@@ -1,5 +1,9 @@
-var colorBackground = '#283d3b'
-var colorFonts = '#edddd4'
-var colorBlue = '#197278'
-var colorLightRed = '#c44536'
-var colorDarkRed = '#772e25'
+var color = {
+    background : '#283d3b',
+    fonts : '#edddd4',
+    blue : '#edddd4',
+    lightRed : '#c44536',
+    darkRed : '#772e25'
+} 
+
+export default color
