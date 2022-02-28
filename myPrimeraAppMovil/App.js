@@ -24,8 +24,8 @@ export default function App() {
           <Stack.Screen name='To Do' component={Home}/>
           <Stack.Screen name='Importante' component={Importante}/>
           <Stack.Screen name='MiDia' component={MiDia}/>
-          <Stack.Screen name='Nueva tarea' component={List}/>
           <Stack.Screen name='Mis tareas' component={misTareas}/>
+          <Stack.Screen name='Nueva tarea' component={List}/>
         </Stack.Navigator>
     </NavigationContainer>
   );

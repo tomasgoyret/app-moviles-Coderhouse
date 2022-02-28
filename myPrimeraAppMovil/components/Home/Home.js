@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
                     <Text style={styles.navText}>Tareas</Text>
                 </Pressable>
 
-            <Button color='black' style={styles.boton} onPress={() => { navigation.navigate('Nueva Tarea') }}
+            <Button color='black' style={styles.boton} onPress={() => { navigation.navigate('Nueva tarea') }}
                 title='Nueva Tarea'></Button>
 
         </View>
