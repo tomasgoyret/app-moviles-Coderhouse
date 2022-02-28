@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       fontSize: 80,
       fontWeight: 'bold',
       color: '#edddd4',
-      fontFamily: 'RalewayBold'
+      fontFamily: 'RalewayLightItalic'
     },
     text: {
       color: '#edddd4',
