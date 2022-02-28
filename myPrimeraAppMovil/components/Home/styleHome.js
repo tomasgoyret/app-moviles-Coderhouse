@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         fontFamily: fuente.cursiva
     },
     imagen: {
-        width: 100,
-        height: 100,
+        width: 60,
+        height: 60,
         borderRadius: 500,
     },
     navText: {
@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
         fontFamily: fuente.regular,
         marginTop: 5,
         marginLeft: 10,
+    },
+    containerUser: {
+        marginTop: 20,
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    containerUserData: {
+        marginLeft: 15,
     }
 
 }

@@ -9,9 +9,16 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <View style={styles.containerUser}>
+                
             <Image style={styles.imagen} source={require('../../assets/28003-1631171950.jpg')}></Image>
+            <View style={styles.containerUserData}>
             <Text style={styles.user}>Tomás Goyret</Text>
             <Text style={styles.mail}>tomasgoyret@email.com</Text>
+                    
+            </View>
+
+            </View>
                 <Pressable onPress={() => { navigation.navigate('MiDia') }}>
                     <Text style={styles.navText}>Mi día</Text>
                 </Pressable>
