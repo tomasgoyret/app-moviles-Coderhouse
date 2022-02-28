@@ -30,15 +30,32 @@ const styles = StyleSheet.create({
         color: color.fonts,
         fontFamily: fuente.regular,
         marginTop: 5,
-        marginLeft: 10,
+        marginBottom: 5,
+        marginLeft: 5,
     },
     containerUser: {
         marginTop: 20,
+        marginLeft: 15,
+        marginRight: 15,
+        paddingBottom: 10,
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1
     },
     containerUserData: {
         marginLeft: 15,
+    },
+    navOption:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    containerBoton: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
     }
 
 }

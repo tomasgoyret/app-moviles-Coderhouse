@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Text } from 'react-native-web';
 import MiDia from './components/My Day/MiDia';
-import misTareas from './components/MisTareas/misTareas';
+import MisTareas from './components/MisTareas/misTareas';
 
 const Stack = createNativeStackNavigator()
 
@@ -24,7 +24,7 @@ export default function App() {
           <Stack.Screen name='To Do' component={Home}/>
           <Stack.Screen name='Importante' component={Importante}/>
           <Stack.Screen name='MiDia' component={MiDia}/>
-          <Stack.Screen name='Mis tareas' component={misTareas}/>
+          <Stack.Screen name='Mis tareas' component={MisTareas}/>
           <Stack.Screen name='Nueva tarea' component={List}/>
         </Stack.Navigator>
     </NavigationContainer>

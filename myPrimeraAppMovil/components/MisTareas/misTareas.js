@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-export default function misTareas({ navigation }) {
+export default function MisTareas({ navigation }) {
 
     return (
         <View>
