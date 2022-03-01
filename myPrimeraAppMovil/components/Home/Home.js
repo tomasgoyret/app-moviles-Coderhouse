@@ -82,9 +82,9 @@ export default function Home({ navigation }) {
             onPress={() => { navigation.navigate('Nueva tarea')}}
             buttonStyle={{
                 borderRadius: 50,
-                width: 200,
+                width: 140,
                 height: 50,
-                marginRight: 30,
+                marginLeft: 20
               }}
               icon={{
                 name: 'add-circle',

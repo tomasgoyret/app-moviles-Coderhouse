@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontWeight: "900",
     },
     navContainer: {
-        marginLeft: 15,
+        marginLeft: 7,
         marginRight: 15,
         paddingBottom: 10,
         borderBottomColor: 'grey',
