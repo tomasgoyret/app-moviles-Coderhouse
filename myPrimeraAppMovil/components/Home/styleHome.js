@@ -5,7 +5,7 @@ import fuente from "../../assets/variablesDeEstilo/fonts";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 30,
+        paddingTop: 20,
         backgroundColor: color.background,
         color: color.fonts,
         fontFamily: fuente.regular
@@ -27,12 +27,13 @@ const styles = StyleSheet.create({
         borderRadius: 500,
     },
     navText: {
-        fontSize: 20,
+        fontSize: 15,
         color: color.fonts,
         fontFamily: fuente.regular,
         marginTop: 5,
         marginBottom: 5,
         marginLeft: 5,
+        fontWeight: "900"
     },
     containerUser: {
         marginTop: 20,

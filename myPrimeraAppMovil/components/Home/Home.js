@@ -11,10 +11,9 @@ import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 export default function Home({ navigation }) {
 
     return (
-
         <View style={styles.container}>
+            <StatusBar></StatusBar>
             <View style={styles.containerUser}>
-
                 <Avatar size={64} rounded source={require('../../assets/28003-1631171950.jpg')}></Avatar>
                 <View style={styles.containerUserData}>
                     <Text style={styles.user}>Tomás Goyret</Text>
@@ -24,9 +23,9 @@ export default function Home({ navigation }) {
             </View>
             <Pressable style={styles.navOption} onPress={() => { navigation.navigate('MiDia') }}>
                 <Icon
-                    name="sunny-outline"
+                    name="sunny"
                     type='ionicon'
-                    color={`${color.lightRed}`}
+                    color={`${color.darkRed}`}
                 />
                 <Text style={styles.navText}>Mi día </Text>
             </Pressable>
@@ -34,15 +33,39 @@ export default function Home({ navigation }) {
                 <Icon
                     name="star-outline"
                     type='ionicon'
-                    color={`${color.lightRed}`}
+                    color={`${color.fonts}`}
                 />
                 <Text style={styles.navText}>Importante </Text>
             </Pressable>
             <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
                 <Icon
-                    name="checkmark-outline"
+                    name="calendar-outline"
                     type='ionicon'
                     color={`${color.lightRed}`}
+                />
+                <Text style={styles.navText}>Planeadas</Text>
+            </Pressable>
+            <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                <Icon
+                    name="person-outline"
+                    type='ionicon'
+                    color={`${color.blue}`}
+                />
+                <Text style={styles.navText}>Asignado a mí </Text>
+            </Pressable>
+            <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                <Icon
+                    name="flag-outline"
+                    type='ionicon'
+                    color={`${color.lightRed}`}
+                />
+                <Text style={styles.navText}>Correo marcado </Text>
+            </Pressable>
+            <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                <Icon
+                    name="checkbox-outline"
+                    type='ionicon'
+                    color={`${color.blue}`}
                 />
                 <Text style={styles.navText}>Tareas </Text>
             </Pressable>

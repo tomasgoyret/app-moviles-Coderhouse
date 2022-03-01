@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [loaded] = useFonts({
-    Raleway: require('./assets/fonts/static/Raleway-Thin.ttf'),
+    Raleway: require('./assets/fonts/static/Raleway-Light.ttf'),
     RalewayBold: require('./assets/fonts/static/Raleway-Bold.ttf'),
     RalewayLightItalic: require('./assets/fonts/static/Raleway-LightItalic.ttf'),
   })
