@@ -11,11 +11,14 @@ import fuente from '../../assets/variablesDeEstilo/fonts';
 
 export default function Home({ navigation }) {
 
+    var fotoURL = ''
+    var fotoDefault = '../../assets/28003-1631171950.jpg'
+
     return (
         <View style={styles.container}>
             <StatusBar></StatusBar>
             <View style={styles.containerUser}>
-                <Avatar size={64} rounded source={require('../../assets/28003-1631171950.jpg')}></Avatar>
+                <Avatar size={64} rounded source={require(fotoURL?fotoURL:fotoDefault)}></Avatar>
                 <View style={styles.containerUserData}>
                     <Text style={styles.user}>Tomás Goyret</Text>
                     <Text style={styles.mail}>tomasgoyret@email.com</Text>
