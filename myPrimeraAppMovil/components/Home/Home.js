@@ -11,8 +11,8 @@ import fuente from '../../assets/variablesDeEstilo/fonts';
 
 export default function Home({ navigation }) {
 
-    var fotoURL = ''
-    var fotoDefault = '../../assets/28003-1631171950.jpg'
+    var fotoURL = '../../assets/28003-1631171950.jpg'
+    var fotoDefault = '../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg'
 
     return (
         <View style={styles.container}>
