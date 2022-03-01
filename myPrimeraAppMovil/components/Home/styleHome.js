@@ -30,10 +30,16 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: color.fonts,
         fontFamily: fuente.regular,
-        marginTop: 5,
-        marginBottom: 5,
+        marginTop: 7,
+        marginBottom: 7,
         marginLeft: 5,
-        fontWeight: "900"
+        fontWeight: "900",
+    },
+    navContainer: {
+        marginLeft: 15,
+        paddingBottom: 10,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1
     },
     containerUser: {
         marginTop: 20,

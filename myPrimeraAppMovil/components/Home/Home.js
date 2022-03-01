@@ -21,6 +21,8 @@ export default function Home({ navigation }) {
                 </View>
 
             </View>
+
+            <View style={styles.navContainer}>
             <Pressable style={styles.navOption} onPress={() => { navigation.navigate('MiDia') }}>
                 <Icon
                     name="sunny"
@@ -69,6 +71,7 @@ export default function Home({ navigation }) {
                 />
                 <Text style={styles.navText}>Tareas </Text>
             </Pressable>
+            </View>
 
             <View style={styles.containerBoton}>
             <Button
