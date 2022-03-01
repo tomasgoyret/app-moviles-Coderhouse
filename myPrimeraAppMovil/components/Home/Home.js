@@ -4,13 +4,13 @@ import styles from './styleHome';
 import { Icon} from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
+import { StatusBar } from 'react-native-web';
 
 
 export default function Home({ navigation }) {
 
-    const [open, setOpen] = useState(false);
-
     return (
+
         <View style={styles.container}>
             <View style={styles.containerUser}>
 
@@ -54,6 +54,7 @@ export default function Home({ navigation }) {
                 borderRadius: 50,
                 width: 50,
                 height: 50,
+                marginRight: 30,
               }}
             title='+'/>
             </View>

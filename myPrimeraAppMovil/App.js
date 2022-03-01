@@ -22,10 +22,10 @@ export default function App() {
     <NavigationContainer>
         <Stack.Navigator
          initialRouteName='Home'
-         screenOptions={
+         >
+          <Stack.Screen options={
            {headerShown: false,}
-         }>
-          <Stack.Screen name='To Do' component={Home}/>
+         } name='To Do' component={Home}/>
           <Stack.Screen name='Importante' component={Importante}/>
           <Stack.Screen name='MiDia' component={MiDia}/>
           <Stack.Screen name='Mis tareas' component={MisTareas}/>

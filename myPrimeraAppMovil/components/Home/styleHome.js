@@ -5,6 +5,7 @@ import fuente from "../../assets/variablesDeEstilo/fonts";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 30,
         backgroundColor: color.background,
         color: color.fonts,
         fontFamily: fuente.regular
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
         marginLeft: 15,
     },
     navOption:{
+        marginLeft: 20,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
