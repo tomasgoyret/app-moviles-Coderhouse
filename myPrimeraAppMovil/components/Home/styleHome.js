@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     },
     navContainer: {
         marginLeft: 15,
+        marginRight: 15,
         paddingBottom: 10,
         borderBottomColor: 'grey',
         borderBottomWidth: 1
@@ -55,18 +56,12 @@ const styles = StyleSheet.create({
     containerUserData: {
         marginLeft: 15,
     },
-    navOption:{
+    navOption: {
         marginLeft: 20,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
-    containerBoton: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
-    }
-
 }
 )
 

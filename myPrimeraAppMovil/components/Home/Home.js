@@ -6,6 +6,7 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import { StatusBar } from 'react-native-web';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
+import fuente from '../../assets/variablesDeEstilo/fonts';
 
 
 export default function Home({ navigation }) {
@@ -77,13 +78,19 @@ export default function Home({ navigation }) {
             <Button
             onPress={() => { navigation.navigate('Nueva tarea')}}
             buttonStyle={{
-                backgroundColor: `${color.darkRed}`,
                 borderRadius: 50,
-                width: 50,
+                width: 200,
                 height: 50,
                 marginRight: 30,
               }}
-            title='+'/>
+              icon={{
+                name: 'add-circle',
+                type: 'ionicon',
+                size: 25,
+                color: 'white',
+              }}
+            titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
+            title=' Nueva Lista'/>
             </View>
 
         </View>
