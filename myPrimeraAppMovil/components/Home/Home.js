@@ -16,7 +16,6 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <StatusBar></StatusBar>
             <View style={styles.containerUser}>
                 <Avatar size={64} rounded source={require(fotoURL?fotoURL:fotoDefault)}></Avatar>
                 <View style={styles.containerUserData}>
