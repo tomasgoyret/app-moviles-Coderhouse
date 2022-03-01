@@ -25,7 +25,8 @@ export default function App() {
          >
           <Stack.Screen options={
            {headerShown: false,}
-         } name='To Do' component={Home}/>
+         } 
+         name='To Do' component={Home}/>
           <Stack.Screen name='Importante' component={Importante}/>
           <Stack.Screen name='MiDia' component={MiDia}/>
           <Stack.Screen name='Mis tareas' component={MisTareas}/>

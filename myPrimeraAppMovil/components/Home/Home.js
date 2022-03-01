@@ -5,6 +5,7 @@ import { Icon} from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import { StatusBar } from 'react-native-web';
+import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 
 
 export default function Home({ navigation }) {
@@ -14,7 +15,7 @@ export default function Home({ navigation }) {
         <View style={styles.container}>
             <View style={styles.containerUser}>
 
-                <Image style={styles.imagen} source={require('../../assets/28003-1631171950.jpg')}></Image>
+                <Avatar size={64} rounded source={require('../../assets/28003-1631171950.jpg')}></Avatar>
                 <View style={styles.containerUserData}>
                     <Text style={styles.user}>Tomás Goyret</Text>
                     <Text style={styles.mail}>tomasgoyret@email.com</Text>
