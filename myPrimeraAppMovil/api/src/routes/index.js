@@ -1,12 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 
-//const notificaciones = require("./mailsNotificaciones")
+const listRoutes = require("./List")
 
-router.get('/hola',(req,res) => { 
-    res.send('hola')
-    })
+//listas
+router.use('/list',listRoutes)
 
-//router.use("/notificaciones", notificaciones)
 
 module.exports = router;
