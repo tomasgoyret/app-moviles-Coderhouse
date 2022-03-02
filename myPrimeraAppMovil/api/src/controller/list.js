@@ -1,7 +1,9 @@
+const { Lista } = require('../db')
+
 const listController = {}
 
 listController.add = (req,res) => {
-    res.send('esta es la ruta para agregar lista')
+    const {name} = req.body
 }
 
 module.exports = listController
