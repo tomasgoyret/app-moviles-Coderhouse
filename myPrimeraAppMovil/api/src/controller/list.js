@@ -4,6 +4,7 @@ const listController = {}
 
 listController.add = (req,res) => {
     const {name} = req.body
+    res.send ('si anda')
 }
 
 module.exports = listController
