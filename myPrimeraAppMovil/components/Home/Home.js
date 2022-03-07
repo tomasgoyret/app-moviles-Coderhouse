@@ -7,9 +7,14 @@ import color from '../../assets/variablesDeEstilo/colors';
 import { StatusBar } from 'react-native-web';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import fuente from '../../assets/variablesDeEstilo/fonts';
+import { createList } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Home({ navigation }) {
+
+    const dispatch = useDispatch()
+    const list = useSelector((state)=>state.list)
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
     var fotoDefault = '../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg'
@@ -78,7 +83,7 @@ export default function Home({ navigation }) {
 
             <View style={styles.containerBoton}>
             <Button
-            onPress={() => { navigation.navigate('Nueva tarea')}}
+            onPress={() => { dispatch(createList({name : "Compras del Super"}))}}
             buttonStyle={{
                 borderRadius: 50,
                 width: 140,
@@ -93,6 +98,9 @@ export default function Home({ navigation }) {
               }}
             titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
             title=' Nueva Lista'/>
+
+            <Text>{list[0].name ? list[0].name : "No hay listas"}</Text>
+
             </View>
 
         </View>
