@@ -5,9 +5,10 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator, createBottomTabNavigator } from '@react-navigation/native-stack'
-import { Text } from 'react-native-web';
 import MiDia from './components/My Day/MiDia';
 import MisTareas from './components/MisTareas/misTareas';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const Stack = createNativeStackNavigator()
 //const Tab = createBottomTabNavigator()
@@ -19,7 +20,9 @@ export default function App() {
     RalewayLightItalic: require('./assets/fonts/static/Raleway-LightItalic.ttf'),
   })
   if (!loaded) return <AppLoading />
+  
   return (
+    <Provider store={store}>
     <NavigationContainer>
         <Stack.Navigator
          initialRouteName='Home'
@@ -34,6 +37,7 @@ export default function App() {
           <Stack.Screen name='Nueva tarea' component={List}/>
         </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
