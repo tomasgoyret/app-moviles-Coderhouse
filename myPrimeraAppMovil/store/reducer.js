@@ -2,7 +2,7 @@ import { CREATE_LIST } from "./actionTypes";
 
 const initialState = {
     list: [{
-        name: "Trámites en el centro"
+        name : "cosas para hacer"
     }],
   };
   
