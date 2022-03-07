@@ -17,7 +17,7 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.containerUser}>
-                <Avatar size={64} rounded source={require(fotoURL?fotoURL:fotoDefault)}></Avatar>
+                <Avatar size={64} rounded source={require('../../assets/28003-1631171950.jpg')}></Avatar>
                 <View style={styles.containerUserData}>
                     <Text style={styles.user}>Tomás Goyret</Text>
                     <Text style={styles.mail}>tomasgoyret@email.com</Text>

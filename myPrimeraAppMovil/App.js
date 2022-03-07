@@ -4,12 +4,13 @@ import Home from './components/Home/Home';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator, createBottomTabNavigator } from '@react-navigation/native-stack'
 import { Text } from 'react-native-web';
 import MiDia from './components/My Day/MiDia';
 import MisTareas from './components/MisTareas/misTareas';
 
 const Stack = createNativeStackNavigator()
+//const Tab = createBottomTabNavigator()
 
 export default function App() {
   const [loaded] = useFonts({
