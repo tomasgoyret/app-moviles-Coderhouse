@@ -4,7 +4,6 @@ import styles from './styleHome';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
-import { StatusBar } from 'react-native-web';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import fuente from '../../assets/variablesDeEstilo/fonts';
 import { createList } from '../../store/actions';
