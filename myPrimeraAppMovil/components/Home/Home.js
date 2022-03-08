@@ -9,6 +9,7 @@ import fuente from '../../assets/variablesDeEstilo/fonts';
 import { createList } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function Home({ navigation }) {
@@ -102,8 +103,9 @@ export default function Home({ navigation }) {
                     }}
                     titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
                     title=' Nueva Lista' />
-
+                  
                     <Listas/>
+                  
                    
 
             </View>
