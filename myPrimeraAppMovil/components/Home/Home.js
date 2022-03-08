@@ -14,12 +14,12 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
-    const list = useSelector(state => state.list)
-
+    
     useEffect(() => {
         dispatch(createList({ name: "Tareas de la casa" }))
-    }, [])
-
+    }, [list])
+    
+    let list = useSelector(state => state.list)
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
     var fotoDefault = '../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg'
@@ -89,7 +89,7 @@ export default function Home({ navigation }) {
             <View style={styles.containerBoton}>
                 <Button
                     onPress={() => {
-                        dispatch(createList({ name: "Compras del Super" }))
+                        dispatch(createList({ name: "Compras del Super 3" }))
                     }}
                     buttonStyle={{
                         borderRadius: 50,
@@ -105,6 +105,13 @@ export default function Home({ navigation }) {
                     }}
                     titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
                     title=' Nueva Lista' />
+
+        
+                   {list? list.map((e)=>{
+                        return <Text> 1 {e.name} </Text>
+                    }) : <Text>No hay tareas</Text>}
+                    
+    
 
 
 
