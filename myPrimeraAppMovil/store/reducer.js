@@ -1,9 +1,7 @@
 import { CREATE_LIST } from "./actionTypes";
 
 const initialState = {
-    list: [{
-        name : "cosas para hacer"
-    }],
+    list: [],
   };
   
   const rootReducer = (state = initialState, action) => {

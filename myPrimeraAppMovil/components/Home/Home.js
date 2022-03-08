@@ -15,9 +15,9 @@ export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
     
-    useEffect(() => {
-        dispatch(createList({ name: "Tareas de la casa" }))
-    }, [list])
+    // useEffect(() => {
+    //     dispatch(createList({ name: "Tareas de la casa" }))
+    // }, [list])
     
     let list = useSelector(state => state.list)
 
@@ -89,7 +89,7 @@ export default function Home({ navigation }) {
             <View style={styles.containerBoton}>
                 <Button
                     onPress={() => {
-                        dispatch(createList({ name: "Compras del Super 3" }))
+                        dispatch(createList({ name: "Compras del Super 1" }))
                     }}
                     buttonStyle={{
                         borderRadius: 50,
@@ -107,9 +107,9 @@ export default function Home({ navigation }) {
                     title=' Nueva Lista' />
 
         
-                   {list? list.map((e)=>{
+                   {list[0]? list.map((e)=>{
                         return <Text> 1 {e.name} </Text>
-                    }) : <Text>No hay tareas</Text>}
+                    }) : <Text>No hay tarea</Text>}
                     
     
 
