@@ -1,4 +1,4 @@
-import { Text, View, Image, Pressable } from 'react-native';
+import { Text, View, Image, Pressable, Alert, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styleHome';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
@@ -8,13 +8,14 @@ import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import fuente from '../../assets/variablesDeEstilo/fonts';
 import { createList } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Listas from '../Listas/listas';
 
 
 export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
+    let list = useSelector(state=>state.list)
     
-    let list = useSelector(state => state.list)
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
     var fotoDefault = '../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg'
@@ -83,8 +84,9 @@ export default function Home({ navigation }) {
 
             <View style={styles.containerBoton}>
                 <Button
-                    onPress={() => {
-                        dispatch(createList({ name: "Compras del Super 1" }))
+                    onPress={async () => {
+                        dispatch(createList({ name: "Compras del Super 3" }))
+                        navigation.push("Home")
                     }}
                     buttonStyle={{
                         borderRadius: 50,
@@ -101,14 +103,8 @@ export default function Home({ navigation }) {
                     titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
                     title=' Nueva Lista' />
 
-        
-                   {list[0]? list.map((e)=>{
-                        return <Text> 1 {e.name} </Text>
-                    }) : <Text>No hay tarea</Text>}
-                    
-    
-
-
+                    <Listas/>
+                   
 
             </View>
 
