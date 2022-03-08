@@ -15,10 +15,6 @@ export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
     
-    // useEffect(() => {
-    //     dispatch(createList({ name: "Tareas de la casa" }))
-    // }, [list])
-    
     let list = useSelector(state => state.list)
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
