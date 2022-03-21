@@ -7,6 +7,13 @@ export const createList = (listName) =>  {
             type : CREATE_LIST,
             payload: listName
         })
-
+    }
+}
+export const savePhoto = (photo) =>  {
+    return  function (dispatch){
+        return  dispatch({
+            type : CREATE_LIST,
+            payload: photo
+        })
     }
 }
