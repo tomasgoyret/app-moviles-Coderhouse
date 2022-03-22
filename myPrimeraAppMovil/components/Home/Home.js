@@ -49,7 +49,7 @@ export default function Home({ navigation }) {
         <View style={styles.container}>
             <View style={styles.containerUser}>
                 <Pressable onPress={() => setModal(true)}>
-                    {pickedUri ? <Image style={styles.imagen} source={{uri : foto}}></Image> : <Avatar size={64} rounded source={require(fotoDefault)}></Avatar>}
+                    {pickedUri ? <Image style={styles.imagen} source={{uri : foto}}></Image> : <Avatar size={64} rounded source={require('../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg')}></Avatar>}
                 </Pressable>
                 <View style={styles.containerUserData}>
                     <Text style={styles.user}>Tomás Goyret</Text>
