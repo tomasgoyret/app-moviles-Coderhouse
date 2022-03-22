@@ -9,10 +9,16 @@ import MiDia from './components/My Day/MiDia';
 import MisTareas from './components/MisTareas/misTareas';
 import { Provider } from 'react-redux';
 import store from './store';
+import { init } from './db';
 
 const Stack = createNativeStackNavigator()
-//const Tab = createBottomTabNavigator()
 
+init()
+  .then(()=>console.log('Database initialized'))
+  .catch((err)=>{
+    console.log('Data base fail conect')
+    console.log(err)
+  })
 export default function App() {
   const [loaded] = useFonts({
     Raleway: require('./assets/fonts/static/Raleway-Light.ttf'),
