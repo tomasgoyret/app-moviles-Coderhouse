@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Button, Text, TextInput, View, FlatList, Modal } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Completed from './CompletedTask';
 import Pending from './PendingTasks';
 import styles from './styles';
+import { insertTask } from '../db';
+import { normalizeText } from 'react-native-elements/dist/helpers';
 
 export default function List() {
+
+  const dispatch = useDispatch()
 
   const [text, setText] = useState('')
   const [task, setTask] = useState([])
@@ -20,7 +25,7 @@ export default function List() {
   const handleChangeText = (text) => {
     setText(text)
   }
-  const handleTask = () => {
+  const handleTask = async () => {
     if (!text) {
       return alert('el campo de la tarea no puede estar vacío')
     }
@@ -31,6 +36,15 @@ export default function List() {
         tarea: text,
       },
     ])
+    try {
+      let response = await insertTask(text)
+      console.log(response, 'insertTask')
+      console.log(`se agrego ${text} a la BBDD`)
+    } catch (err) {
+      console.log(`No se pudo agregar a la BBDD`)
+      console.log(err)
+    }
+
     setText('')
     alert(`Tarea "${text}" agregada`)
   }

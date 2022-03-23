@@ -9,11 +9,11 @@ export const createList = (listName) =>  {
         })
     }
 }
-export const savePhoto = (photo) =>  {
-    return  function (dispatch){
-        return  dispatch({
-            type : CREATE_LIST,
-            payload: photo
-        })
-    }
-}
+// export const CREATE_ = (photo) =>  {
+//     return  function (dispatch){
+//         return  dispatch({
+//             type : CREATE_LIST,
+//             payload: photo
+//         })
+//     }
+// }

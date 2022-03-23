@@ -1,11 +1,12 @@
 import { Text,View, StyleSheet} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TodasLasTareas from './Tab Navigation Task/TODO';
 import Pendientes from './Tab Navigation Task/Pendientes';
 import Completadas from './Tab Navigation Task/Finalizadas';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import color from '../../assets/variablesDeEstilo/colors';
+import { getTask } from '../../db';
 
 
 const Tab = createBottomTabNavigator()
@@ -36,8 +37,33 @@ export default function MisTareas({ navigation }) {
         },
       })
 
+      const [allTasks, setAllTasks] = useState()
+
+      useEffect( async ()=>{
+          try {
+              let tasks =  await getTask()
+              var tareas = tasks.rows._array.map((e)=> {
+                var ele = {
+                    description : e.description,
+                    id : e.id
+                }
+                return ele
+              
+            })
+              setAllTasks(tareas)
+              console.log('Se importaron todas las tareas de BBDD')
+            } catch (error) {
+                console.log('Fallo el getTasks')
+                console.log(error)
+            }
+      },[])
+
     return (
-        <Tab.Navigator
+        <View>
+            {allTasks && allTasks.map((e) => {
+                return <Text>{e.description}</Text>
+            })}
+        {/* <Tab.Navigator
         screenOptions={{
             tabBarShowLabel: false,
             tabBarStyle: { ...styles.shadow, ...styles.tabBar },
@@ -79,7 +105,8 @@ export default function MisTareas({ navigation }) {
                     </View>
                     )
                 }}/>
-        </Tab.Navigator>
+        </Tab.Navigator> */}
+        </View>
     )
 
 
