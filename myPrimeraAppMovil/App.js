@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator, createBottomTabNavigator } from '@react-navigation/native-stack'
 import MiDia from './components/My Day/MiDia';
 import MisTareas from './components/MisTareas/misTareas';
+import Authentication from './components/Auth/Auth.js';
 import { Provider } from 'react-redux';
 import store from './store';
 import { init } from './db';
@@ -14,8 +15,8 @@ import { init } from './db';
 const Stack = createNativeStackNavigator()
 
 init()
-  .then(()=>console.log('Database initialized'))
-  .catch((err)=>{
+  .then(() => console.log('Database initialized'))
+  .catch((err) => {
     console.log('Data base fail conect')
     console.log(err)
   })
@@ -26,23 +27,27 @@ export default function App() {
     RalewayLightItalic: require('./assets/fonts/static/Raleway-LightItalic.ttf'),
   })
   if (!loaded) return <AppLoading />
-  
+
   return (
     <Provider store={store}>
-    <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator
-         initialRouteName='Home'
-         >
+          initialRouteName='Authentication'
+        >
           <Stack.Screen options={
-           {headerShown: false,}
-         } 
-         name='Home' component={Home}/>
-          <Stack.Screen name='Importante' component={Importante}/>
-          <Stack.Screen name='MiDia' component={MiDia}/>
-          <Stack.Screen name='Mis tareas' component={MisTareas}/>
-          <Stack.Screen name='Nueva tarea' component={List}/>
+            { headerShown: false, }
+          }
+            name='Home' component={Home} />
+          <Stack.Screen name='Importante' component={Importante} />
+          <Stack.Screen name='MiDia' component={MiDia} />
+          <Stack.Screen name='Mis tareas' component={MisTareas} />
+          <Stack.Screen name='Nueva tarea' component={List} />
+          <Stack.Screen options={{
+            headerShown: false
+          }}
+          name='Authentication' component={Authentication} />
         </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
     </Provider>
   );
 }
