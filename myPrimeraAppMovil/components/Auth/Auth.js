@@ -47,7 +47,7 @@ export default function Authentication() {
                     marginHorizontal: 50,
                     marginVertical: 10,
                 }}
-                titleStyle={{ fontWeight: 'thin' , color: color.fonts }}
+                titleStyle={{color: color.fonts }}
             />
             <Button
              icon={{
@@ -68,7 +68,7 @@ export default function Authentication() {
                     marginHorizontal: 50,
                     marginVertical: 10,
                 }}
-                titleStyle={{ fontWeight: 'thin' , color: color.fonts }}
+                titleStyle={{color: color.fonts }}
             />
 
             <Pressable>
