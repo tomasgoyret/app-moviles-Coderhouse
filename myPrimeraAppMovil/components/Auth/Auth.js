@@ -8,7 +8,7 @@ import axios from 'axios';
 export default function Authentication() {
 
     const auth_uri = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUUuOrljFuN1tckzxnm-pRrqQ_upyXkrc"
-    const logo = '../../assets/edddd4.png'
+
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../assets/edddd4.png')} />
