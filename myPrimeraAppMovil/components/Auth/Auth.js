@@ -2,10 +2,12 @@ import { View, Image, Text, Pressable, Alert } from 'react-native';
 import styles from './stylesAuth';
 import { Input, Icon, Button } from 'react-native-elements';
 import color from '../../assets/variablesDeEstilo/colors';
+import axios from 'axios';
 
 
 export default function Authentication() {
 
+    const auth_uri = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUUuOrljFuN1tckzxnm-pRrqQ_upyXkrc"
     const logo = '../../assets/edddd4.png'
     return (
         <View style={styles.container}>
@@ -42,6 +44,16 @@ export default function Authentication() {
 
             <View style={styles.containerButtoms}>
                 <Button
+                    onPress={async () => {
+                        try {
+                            const response = await axios.post(auth_uri, { email: "colo@goyret.com", password: "hola123", returnSecureToken: true })
+                            console.log(response.data.email)
+
+                        } catch (err) {
+                            console.error(err.message)
+                        }
+                    }
+                    }
                     title="Iniciar Sesión"
                     buttonStyle={{
                         backgroundColor: color.background,
