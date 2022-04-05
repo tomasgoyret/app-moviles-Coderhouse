@@ -1,11 +1,9 @@
-import { View, Image, Text, Pressable, Alert } from 'react-native';
+import { View, Image, Alert } from 'react-native';
 import styles from './stylesSignUp.js';
 import { Input, Icon, Button } from 'react-native-elements';
 import color from '../../assets/variablesDeEstilo/colors';
 import axios from 'axios';
 import {useState} from 'react'
-import { Modal } from 'react-native-web';
-import { NavigationContainer } from '@react-navigation/native';
 
 
 export default function SignUp({navigation}) {
@@ -36,7 +34,6 @@ export default function SignUp({navigation}) {
             confirmPassword: confirmPassword
         })
     }
-
     const newAccount = async (username, password, confirmPassword) => {
         if( password === confirmPassword){
             try {
