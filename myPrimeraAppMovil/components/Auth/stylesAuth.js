@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     },
     input: {
         padding: 10,
+        color: color.fonts
 
     },
     inputPassword: {

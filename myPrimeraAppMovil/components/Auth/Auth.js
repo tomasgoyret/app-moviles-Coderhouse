@@ -56,7 +56,7 @@ export default function Authentication({navigation}) {
                 keyboardType='email-address'
             />
             <Input
-                style={styles.inputPassword}
+                style={styles.input}
                 placeholder='Contraseña'
                 leftIcon={
                     <Icon

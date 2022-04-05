@@ -6,12 +6,13 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import fuente from '../../assets/variablesDeEstilo/fonts';
-import { createList } from '../../store/actions';
+import { createList, initAuthentication } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
 import Authentication from '../Auth/Auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Home({ navigation }) {
@@ -19,12 +20,16 @@ export default function Home({ navigation }) {
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
 
+    useEffect(()=>{
+       dispatch(initAuthentication())
+    },[])
+
+
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
     var fotoDefault = '../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg'
     const [modal, setModal] = useState(false)
     const [pickedUri,setPickedUri] = useState()
-    console.log(pickedUri,"foto")
 
     var foto = pickedUri ? pickedUri : fotoDefault
     const handlePermission = async () =>{
