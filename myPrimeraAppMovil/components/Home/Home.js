@@ -11,12 +11,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
+import Authentication from '../Auth/Auth';
 
 
 export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
-    let list = useSelector(state => state.list)
+    const auth = useSelector(state => state.auth)
 
 
     var fotoURL = '../../assets/28003-1631171950.jpg'
@@ -47,7 +48,8 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.containerUser}>
+
+        {auth.length===0 ? <Authentication/> : <View><View style={styles.containerUser}>
                 <Pressable onPress={() => setModal(true)}>
                     {pickedUri ? <Image style={styles.imagen} source={{uri : foto}}></Image> : <Avatar size={64} rounded source={require('../../assets/NWKARXTVKVGL3OW2L4PCGKAUZM.jpg')}></Avatar>}
                 </Pressable>
@@ -202,7 +204,8 @@ export default function Home({ navigation }) {
                             title='Cancelar' />
                     </View>
                 </View>
-            </Modal>
+            </Modal></View> }
+            
 
 
         </View>

@@ -4,11 +4,13 @@ import { Input, Icon, Button } from 'react-native-elements';
 import color from '../../assets/variablesDeEstilo/colors';
 import axios from 'axios';
 import {useState} from 'react'
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../store/actions';
 
 
 export default function Authentication({navigation}) {
 
-    const auth_uri = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUUuOrljFuN1tckzxnm-pRrqQ_upyXkrc"
+    const dispatch = useDispatch()
 
     const [auth, setAuth] = useState({
         email: "",
@@ -26,6 +28,9 @@ export default function Authentication({navigation}) {
             {...auth,
             password : password}
         )
+    }
+    const LogIn = (email,password) => {
+            dispatch(signIn(email,password))
     }
     
     return (
@@ -80,14 +85,10 @@ export default function Authentication({navigation}) {
                 <Button
                     onPress={async () => {
                         try {
-                            Alert.alert(auth.email)
-                            const response = await axios.post(auth_uri, { email: auth.email, password: auth.password, returnSecureToken: true })
-                            console.log(response.data.email)
+                            LogIn(auth.email,auth.password)
                         } catch (err) {
                             console.error(err.message)
-                        }
-                    }
-                    }
+                        }}}
                     title="Iniciar Sesión"
                     buttonStyle={{
                         backgroundColor: color.background,
