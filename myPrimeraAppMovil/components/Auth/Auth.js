@@ -4,7 +4,6 @@ import { Input, Icon, Button } from 'react-native-elements';
 import color from '../../assets/variablesDeEstilo/colors';
 import axios from 'axios';
 import {useState} from 'react'
-import SignUp from '../SignUp/SignUp';
 
 
 export default function Authentication({navigation}) {
@@ -70,6 +69,7 @@ export default function Authentication({navigation}) {
                 autoCapitalize="none"
                 secureTextEntry
             />
+
             <View style={styles.containerforgotPassword}>
                 <Pressable onPress={() => { Alert.alert("Esta app está en desarrollo, funcionalidad en construcción") }}>
                     <Text style={styles.forgotPassword} >Recuperar contraseña</Text>
@@ -131,13 +131,6 @@ export default function Authentication({navigation}) {
                     <Text style={styles.newAccountText}>¿No tenés cuenta? Crear una cuenta</Text>
                 </Pressable>
             </View>
-
-            {/* <Modal animationType='slice' visible={modal}>
-                <SignUp></SignUp>
-            </Modal> */}
-
-
-
 
         </View>
     )
