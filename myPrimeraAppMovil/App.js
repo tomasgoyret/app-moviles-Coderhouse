@@ -11,6 +11,7 @@ import Authentication from './components/Auth/Auth.js';
 import { Provider } from 'react-redux';
 import store from './store';
 import { init } from './db';
+import SignUp from './components/SignUp/SignUp';
 
 const Stack = createNativeStackNavigator()
 
@@ -33,12 +34,13 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName='Authentication'
-        >
-          <Stack.Screen options={
-            { headerShown: false, }
+          screenOptions={
+            {headerShown: false}
           }
-            name='Home' component={Home} />
+        >
+          <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Importante' component={Importante} />
+          <Stack.Screen name='SignUp' component={SignUp} />
           <Stack.Screen name='MiDia' component={MiDia} />
           <Stack.Screen name='Mis tareas' component={MisTareas} />
           <Stack.Screen name='Nueva tarea' component={List} />

@@ -1,20 +1,40 @@
-import { View, Image, Text, Pressable, Alert } from 'react-native';
+import { View, Image, Text, Pressable, Alert, Modal } from 'react-native';
 import styles from './stylesAuth';
 import { Input, Icon, Button } from 'react-native-elements';
 import color from '../../assets/variablesDeEstilo/colors';
 import axios from 'axios';
+import {useState} from 'react'
+import SignUp from '../SignUp/SignUp';
 
 
-export default function Authentication() {
+export default function Authentication({navigation}) {
 
     const auth_uri = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUUuOrljFuN1tckzxnm-pRrqQ_upyXkrc"
 
+    const [auth, setAuth] = useState({
+        email: "",
+        password: ""
+    })
+
+    const handleOnChangeEmail = (email) => {
+        setAuth({
+            ...auth,
+            email: email
+        })
+    }
+    const handleOnChangePassword = (password) => {
+        setAuth(
+            {...auth,
+            password : password}
+        )
+    }
+    
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../assets/edddd4.png')} />
             <Input
                 style={styles.input}
-                placeholder='Usuario'
+                placeholder='Email'
                 leftIcon={
                     <Icon
                         name="person-circle-outline"
@@ -23,6 +43,13 @@ export default function Authentication() {
                         color={color.fonts}
                     />
                 }
+                value={auth.email}
+                onChangeText= {(email) =>{ 
+                    handleOnChangeEmail(email)
+                }
+                }
+                autoCapitalize= "none"
+                keyboardType='email-address'
             />
             <Input
                 style={styles.inputPassword}
@@ -35,9 +62,16 @@ export default function Authentication() {
                         color={color.fonts}
                     />
                 }
+                value={auth.password}
+                onChangeText= {(password) => {
+                    handleOnChangePassword(password)
+                }
+                }
+                autoCapitalize="none"
+                secureTextEntry
             />
             <View style={styles.containerforgotPassword}>
-                <Pressable onPress={() => { Alert.alert("Recuperar contraseña") }}>
+                <Pressable onPress={() => { Alert.alert("Esta app está en desarrollo, funcionalidad en construcción") }}>
                     <Text style={styles.forgotPassword} >Recuperar contraseña</Text>
                 </Pressable>
             </View>
@@ -46,9 +80,9 @@ export default function Authentication() {
                 <Button
                     onPress={async () => {
                         try {
-                            const response = await axios.post(auth_uri, { email: "colo@goyret.com", password: "hola123", returnSecureToken: true })
+                            Alert.alert(auth.email)
+                            const response = await axios.post(auth_uri, { email: auth.email, password: auth.password, returnSecureToken: true })
                             console.log(response.data.email)
-
                         } catch (err) {
                             console.error(err.message)
                         }
@@ -69,6 +103,7 @@ export default function Authentication() {
                     titleStyle={{ color: color.fonts }}
                 />
                 <Button
+                    onPress={() => { Alert.alert("Esta app está en desarrollo, funcionalidad en construcción") }}
                     icon={{
                         name: 'logo-google',
                         type: 'ionicon',
@@ -92,10 +127,15 @@ export default function Authentication() {
             </View>
 
             <View>
-                <Pressable style={styles.newAccount} onPress={() => { Alert.alert("Crear cuenta") }}>
+                <Pressable style={styles.newAccount} onPress={() => { navigation.navigate("SignUp") }}>
                     <Text style={styles.newAccountText}>¿No tenés cuenta? Crear una cuenta</Text>
                 </Pressable>
             </View>
+
+            {/* <Modal animationType='slice' visible={modal}>
+                <SignUp></SignUp>
+            </Modal> */}
+
 
 
 
