@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     imagen: {
         width: 60,
         height: 60,
-        borderRadius: 500,
     },
     navText: {
         fontSize: 15,

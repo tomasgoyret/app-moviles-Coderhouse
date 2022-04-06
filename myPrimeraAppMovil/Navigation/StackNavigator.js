@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import List from '../components/List';
 import Importante from '../components/Importante/Importante'
 import Home from '../components/Home/Home';
+import color from "../assets/variablesDeEstilo/colors";
 
 
 
@@ -15,10 +16,18 @@ const StackNavigator = () => {
         <Stack.Navigator
             initialRouteName='Home'
             screenOptions={
-                { headerShown: false }
+                {
+                    animation: "slide_from_right",
+                    headerTintColor: color.fonts,
+                    headerStyle: {
+                        backgroundColor: color.background,
+                    }
+                
+                }
             }
+            
         >
-            <Stack.Screen name='Home' component={Home} />
+            <Stack.Screen options={{headerShown:false}} name='Home' component={Home} />
             <Stack.Screen name='Importante' component={Importante} />
             <Stack.Screen name='MiDia' component={MiDia} />
             <Stack.Screen name='Mis tareas' component={MisTareas} />
