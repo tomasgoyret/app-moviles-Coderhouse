@@ -3,7 +3,7 @@ import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
 import store from './store';
 import { init } from './db';
-import MainNavigator from './MainNavigator';
+import MainNavigator from './Navigation/MainNavigator';
 
 
 init()
