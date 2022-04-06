@@ -7,11 +7,20 @@ import Completadas from './Tab Navigation Task/Finalizadas';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import color from '../../assets/variablesDeEstilo/colors';
 import { getTask } from '../../db';
+import { Button } from 'react-native-elements';
+import { useDispatch } from 'react-redux';
+import { newTask } from '../../store/actions';
 
 
 const Tab = createBottomTabNavigator()
 
+
 export default function MisTareas({ navigation }) {
+    const dispatch = useDispatch()
+    
+    const saveTask = async () => {
+       await dispatch(newTask("hola@hola.com", { title : "comprar PAN"}))
+    }
 
     const styles = StyleSheet.create({
         shadow: {
@@ -60,9 +69,10 @@ export default function MisTareas({ navigation }) {
 
     return (
         <View>
-            {allTasks && allTasks.map((e) => {
+            <Button title="Agregar tarea" onPress={() => saveTask()}></Button>
+            {/* {allTasks && allTasks.map((e) => {
                 return <Text>{e.description}</Text>
-            })}
+            })} */}
         {/* <Tab.Navigator
         screenOptions={{
             tabBarShowLabel: false,

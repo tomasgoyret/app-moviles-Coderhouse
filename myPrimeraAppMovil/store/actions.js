@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { CREATE_LIST, LOG_OUT, SIGN_IN } from "./actionTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getTotalDiskCapacityAsync } from 'expo-file-system';
 
 
 
 const auth_uri = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUUuOrljFuN1tckzxnm-pRrqQ_upyXkrc"
+const bbdd_uri = "https://checked-97559-default-rtdb.firebaseio.com/"
 
 // export const createList = (listName) => {
 //     return function (dispatch) {
@@ -28,15 +30,7 @@ export const signIn = (email, password) => {
             console.log(err.message)
             let mensaje = "No se ha podido ingresar, revisa email o contraseña"
             throw new Error(mensaje)
-        }            // if (!response.ok) {
-        //     const errorResponse = await response.data;
-        //     const errorID = errorResponse.error.message;
-
-        //     let message = 'No se ha podido ingresar';
-        //     if (errorID === 'EMAIL_EXISTS') message = 'Este email no se encuentra registrado';
-
-        //     throw new error(message);
-        //   }
+        }
     }
 }
 
@@ -57,5 +51,13 @@ export const logOut = () => {
             type: LOG_OUT,
             payload: auth
         })
+    }
+}
+
+export const newTask = (user,task) => {
+    return async function(dispatch) {
+        const response = await axios.post(`${bbdd_uri}/tareas.json` , { user: user, task})
+        console.log(response.data)
+        return `Se creo la tarea ${task.name}`
     }
 }
