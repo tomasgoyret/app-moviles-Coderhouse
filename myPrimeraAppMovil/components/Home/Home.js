@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import fuente from '../../assets/variablesDeEstilo/fonts';
-import { createList, logOut } from '../../store/actions';
+import { logOut } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import * as ImagePicker from 'expo-image-picker';
@@ -123,10 +123,10 @@ export default function Home({ navigation }) {
 
                 <View style={styles.containerBoton}>
                     <Button
-                        onPress={async () => {
-                            dispatch(createList({ name: "Compras del Super 3" }))
-                            navigation.push("Home")
-                        }}
+                        // onPress={async () => {
+                        //     dispatch(createList({ name: "Compras del Super 3" }))
+                        //     navigation.push("Home")
+                        // }}
                         buttonStyle={{
                             borderRadius: 50,
                             width: 140,

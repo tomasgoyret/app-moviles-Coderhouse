@@ -1,14 +1,21 @@
-import { CREATE_LIST, LOG_OUT, SIGN_IN } from "./actionTypes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { GET_ALL_TASKS, LOG_OUT, SIGN_IN } from "./actionTypes";
 
 const initialState = {
-    list: [],
-    auth: ""
+  auth: "",
+  misTareas: [],
   };
+  //const auth = await AsyncStorage.getItem('@auth')
   
   const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-      case CREATE_LIST:
-        state.list.push(action.payload)
+      case GET_ALL_TASKS:
+         for ( let key in action.payload ) {
+           if( action.payload[key]["user"] == state.auth) {
+            state.misTareas.push(action.payload[key]["task"])
+           }
+            }
+            console.log(state.misTareas)
         return {
           ...state,
         };
