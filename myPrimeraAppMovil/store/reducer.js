@@ -1,4 +1,4 @@
-import { CREATE_LIST, SIGN_IN } from "./actionTypes";
+import { CREATE_LIST, LOG_OUT, SIGN_IN } from "./actionTypes";
 
 const initialState = {
     list: [],
@@ -16,8 +16,12 @@ const initialState = {
         return {
           ...state,
           auth: action.payload
+        };
+      case LOG_OUT:
+        return {
+          ...state,
+          auth: ""
         }
-
       default:
         return state;
     }

@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import fuente from '../../assets/variablesDeEstilo/fonts';
-import { createList, initAuthentication } from '../../store/actions';
+import { createList, initAuthentication, logOut } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -136,6 +136,24 @@ export default function Home({ navigation }) {
                     }}
                     titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
                     title=' Nueva Lista' />
+                <Button
+                    onPress={async () => {
+                        dispatch(logOut())
+                    }}
+                    buttonStyle={{
+                        borderRadius: 50,
+                        width: 140,
+                        height: 50,
+                        marginLeft: 20
+                    }}
+                    icon={{
+                        name: 'add-circle',
+                        type: 'ionicon',
+                        size: 25,
+                        color: 'white',
+                    }}
+                    titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
+                    title=' Cerrar Sesion' />
 
                 <Listas />
 

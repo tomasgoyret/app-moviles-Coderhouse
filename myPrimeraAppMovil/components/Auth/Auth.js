@@ -85,7 +85,11 @@ export default function Authentication({navigation}) {
                 <Button
                     onPress={async () => {
                         try {
-                            LogIn(auth.email,auth.password)
+                            if( auth.email.length>0 && auth.password.length>0){
+                                LogIn(auth.email,auth.password)
+                            } else {
+                                Alert.alert("Por favor completa todos los campos")
+                            }
                         } catch (err) {
                             console.error(err.message)
                         }}}
