@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center"
     },
-    addTask: {
-        height: 500,
-        flex: 1,
-        maxHeight: "50%",
-        backgroundColor: color.lightRed
-    },
+    // addTask: {
+    //     height: 500,
+    //     flex: 1,
+    //     maxHeight: "50%",
+    //     backgroundColor: color.lightRed
+    // },
     input: {
          padding: 10,
          color: color.fonts
