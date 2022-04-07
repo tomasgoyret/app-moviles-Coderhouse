@@ -1,4 +1,4 @@
-import { View, Text, FlatList, } from 'react-native';
+import { View, Text, FlatList, Pressable, } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
 import { getTask } from '../../db';
@@ -25,7 +25,7 @@ export default function MisTareas({ navigation }) {
         user: auth,
         title: "",
         important: false,
-        date : "",
+        date: "",
         status: "pending",
         id: Math.random()
     })
@@ -35,28 +35,33 @@ export default function MisTareas({ navigation }) {
     const handleNewTask = (titleTask) => {
         setNewTask({
             ...newTask,
-            title:titleTask
+            title: titleTask
         })
     }
 
 
     return (
         <View style={styles.container}>
+            {/* <View style={styles.containerInput}> */}
             <Input style={styles.input}
                 valuie={newTask.title}
-                onChangeText={ (text) => handleNewTask(text)}
+                onChangeText={(text) => handleNewTask(text)}
                 placeholder='Ingrese la tarea que desea agregar'
                 leftIcon={
-                    <Icon
-                        name='add-outline'
-                        type='ionicon'
-                        size={24}
-                        color={color.fonts}
-                        borderRadius={1000}
-                        backgroundColor={color.darkRed}
-                    />
+                    <Pressable onPress={()=> console.log("add task")}>
+                        <Icon
+                            name='add-outline'
+                            type='ionicon'
+                            size={30}
+                            color={color.fonts}
+                            borderRadius={1000}
+                            backgroundColor={color.darkRed}
+                        
+                        />
+                    </Pressable>
                 }
             />
+            {/* </View> */}
             {tareas.length > 0 ? <FlatList
                 data={tareas}
                 renderItem={({ item }) => (

@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center"
     },
+    // containerInput: {
+    //     height: 100
+    // },
     // addTask: {
     //     height: 500,
     //     flex: 1,
