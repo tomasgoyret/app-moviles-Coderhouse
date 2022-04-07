@@ -1,9 +1,9 @@
 import { View, Text, FlatList, Pressable, } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
-import { Input, Icon, CheckBox } from 'react-native-elements';
+import { Input, Icon, CheckBox, Button } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { newTask, getTasks } from '../../store/actions';
+import { newTask, getTasks, updateTask } from '../../store/actions';
 import styles from './stylesMisTareas';
 
 
@@ -39,10 +39,14 @@ export default function MisTareas({ navigation }) {
 
     useEffect(() => {
         dispatch(getTasks())
-    }, [tareas])
+    }, [])
 
     return (
         <View style={styles.container}>
+            <Button onPress={()=>{
+                console.log("boton")
+                dispatch(updateTask(tareas[0]))
+                }}></Button>
             <Input style={styles.input}
                 valuie={task.title}
                 onChangeText={(text) => handleNewTask(text)}
@@ -62,6 +66,7 @@ export default function MisTareas({ navigation }) {
                 }
             />
             <View style={styles.containerInput}>
+                <Text >{tareas[0].date}</Text>
                 <Text>Pendientes</Text>
             </View>
             {tareas.length > 0 ? <FlatList

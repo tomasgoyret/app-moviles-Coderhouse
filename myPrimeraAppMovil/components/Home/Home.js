@@ -44,7 +44,7 @@ export default function Home({ navigation }) {
 
     useEffect(()=>{
         dispatch(getTasks())
-    },[dispatch])
+    },[])
 
     return (
         <View style={styles.container}>

@@ -63,5 +63,21 @@ export const getTasks = () => {
     }
 }
 
-
-// export const updateTask = 
+export const updateTask = (tarea) => {
+    let actualizacion = {
+        date: "tarea.date",
+        important: tarea.important,
+        status: tarea.status,
+        title: tarea.title,
+        user: tarea.user
+    }
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
