@@ -12,7 +12,11 @@ const initialState = {
         let tareas = []
          for ( let key in action.payload ) {
            if( action.payload[key]["user"] == state.auth) {
-            tareas.push(action.payload[key])
+             let obj = {
+               id: key,
+               ...action.payload[key]
+             }
+            tareas.push(obj)
            }
             }
         return {

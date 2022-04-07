@@ -14,44 +14,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         width: 400
     },
-    // containerInput: 
-    //     height: 100
-    // },
-    // addTask: {
-    //     height: 500,
-    //     flex: 1,
-    //     maxHeight: "50%",
-    //     backgroundColor: color.lightRed
-    // },
     input: {
          padding: 10,
          color: color.fonts
     }
-
-    // },
-    // inputPassword: {
-    //     paddingLeft: 10,
-    //     paddingBottom: 0
-    // },
-    // containerButtoms: {
-    //     marginTop: 40,
-    // },
-    // containerforgotPassword: {
-    //     color: color.fonts,
-    //     position: 'relative',
-    //     marginLeft: "50%",
-    // },
-    // forgotPassword: {
-    //     color: color.fonts,
-    // },
-    // newAccount: {
-    //     position: "relative",
-    //     top: 80
-        
-    // },
-    // newAccountText: {
-    //     color: color.fonts,        
-    // },
 })
 
 export default styles
