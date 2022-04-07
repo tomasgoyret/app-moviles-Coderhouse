@@ -100,22 +100,22 @@ export default function Home({ navigation }) {
                         />
                         <Text style={styles.navText}>Planeadas</Text>
                     </Pressable>
-                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                    {/* <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
                         <Icon
                             name="person-outline"
                             type='ionicon'
                             color={`${color.blue}`}
                         />
                         <Text style={styles.navText}>Asignado a mí </Text>
-                    </Pressable>
-                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                    </Pressable> */}
+                    {/* <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
                         <Icon
                             name="flag-outline"
                             type='ionicon'
                             color={`${color.lightRed}`}
                         />
                         <Text style={styles.navText}>Correo marcado </Text>
-                    </Pressable>
+                    </Pressable> */}
                     <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
                         <Icon
                             name="checkbox-outline"

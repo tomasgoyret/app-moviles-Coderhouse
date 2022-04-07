@@ -6,8 +6,6 @@ import List from '../components/List';
 import Importante from '../components/Importante/Importante'
 import Home from '../components/Home/Home';
 import color from "../assets/variablesDeEstilo/colors";
-import MainNavigator from "./MainNavigator";
-import AuthNavigator from "./AuthNavigator";
 
 
 
