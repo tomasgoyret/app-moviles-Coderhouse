@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
         flex: 1,
         maxHeight: "50%",
         backgroundColor: color.lightRed
+    },
+    input: {
+         padding: 10,
+         color: color.fonts
     }
-    // input: {
-    //     padding: 10,
-    //     color: color.fonts
 
     // },
     // inputPassword: {

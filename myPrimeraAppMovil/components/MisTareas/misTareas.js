@@ -20,29 +20,6 @@ export default function MisTareas({ navigation }) {
 
     let tareas = useSelector(state => state.misTareas)
 
-    // const styles = StyleSheet.create({
-    //     shadow: {
-    //         shadowColor: `${color.lightRed}`,
-    //         shadowOffset: { width: 0, height: 10 },
-    //         shadowOpacity: 0.25,
-    //         shadowRadius: 0.25,
-    //         elevation: 5,
-    //     },
-    //     tabBar: {
-    //         position: 'absolute',
-    //         bottom: 25,
-    //         left: 20,
-    //         right: 20,
-    //         borderRadius: 15,
-    //         height: 90,
-    //     },
-    //     item: {
-    //         color: `${color.blue}`,
-    //         flex: 1,
-    //         justifyContent: 'center',
-    //         alignItems: 'center',
-    //     },
-    // })
 
     const [newTask, setNewTask] = useState({
         user: auth,
@@ -65,7 +42,7 @@ export default function MisTareas({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Input
+            <Input style={styles.input}
                 valuie={newTask.title}
                 onChangeText={ (text) => handleNewTask(text)}
                 placeholder='Ingrese la tarea que desea agregar'
