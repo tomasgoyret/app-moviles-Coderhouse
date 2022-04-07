@@ -15,7 +15,7 @@ const initialState = {
             state.misTareas.push(action.payload[key]["task"])
            }
             }
-            console.log(state.misTareas)
+            console.log("Se cargaron tareas de usuario")
         return {
           ...state,
         };

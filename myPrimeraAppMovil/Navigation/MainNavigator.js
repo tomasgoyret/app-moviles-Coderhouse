@@ -14,7 +14,7 @@ const auth = useSelector(state => state.auth)
 
 useEffect(() => {
     dispatch(initAuthentication());
-  }, [auth]);
+  }, []);
 
 
     return (

@@ -1,4 +1,4 @@
-import {View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
 import { getTask } from '../../db';
@@ -16,8 +16,7 @@ export default function MisTareas({ navigation }) {
         dispatch(newTask("hola@hola.com", { title: "hacer otra cosa" }))
     }
 
-    const tareas = useSelector(state => state.misTareas)
-
+    let tareas = useSelector(state => state.misTareas)
 
     // const styles = StyleSheet.create({
     //     shadow: {
@@ -45,31 +44,40 @@ export default function MisTareas({ navigation }) {
 
     const [allTasks, setAllTasks] = useState()
 
-    useEffect( () => {
-        dispatch(getTasks())
-        // try {
-        //     let tasks = await getTasks()
-        //     var tareas = tasks.rows._array.map((e) => {
-        //         var ele = {
-        //             description: e.description,
-        //             id: e.id
-        //         }
-        //         return ele
+    // useEffect(() => {
+    //     dispatch(getTasks())
+    //     // try {
+    //     //     let tasks = await getTasks()
+    //     //     var tareas = tasks.rows._array.map((e) => {
+    //     //         var ele = {
+    //     //             description: e.description,
+    //     //             id: e.id
+    //     //         }
+    //     //         return ele
 
-        //     })
-        //     setAllTasks(tareas)
-        //     console.log('Se importaron todas las tareas de BBDD')
-        // } catch (error) {
-        //     console.log('Fallo el getTasks')
-        //     console.log(error)
-        // }
-    }, [])
+    //     //     })
+    //     //     setAllTasks(tareas)
+    //     //     console.log('Se importaron todas las tareas de BBDD')
+    //     // } catch (error) {
+    //     //     console.log('Fallo el getTasks')
+    //     //     console.log(error)
+    //     // }
+    // }, [tareas])
 
+    
     return (
         <View style={styles.container}>
-            <Text color="white">{tareas[0].title}</Text>
+            <FlatList
+            data={tareas}
+            renderItem = {({item}) => (
+                <Text>{item.title}</Text>
+            )}
+            keyExtractor={item => item + Math.random()}
+            >
+
+            </FlatList>
             <Button
-                onPress={() => { saveTask()}}
+                onPress={() => { saveTask() }}
                 icon={{
                     name: 'add-outline',
                     type: 'ionicon',

@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
 import fuente from '../../assets/variablesDeEstilo/fonts';
-import { logOut } from '../../store/actions';
+import { getTasks, logOut } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import * as ImagePicker from 'expo-image-picker';
@@ -36,8 +36,11 @@ export default function Home({ navigation }) {
             quality: 0.8
         })
         setPickedUri(image.uri)
-
     }
+
+    useEffect(()=>{
+        dispatch(getTasks())
+    },[])
 
     return (
         <View style={styles.container}>
