@@ -42,9 +42,9 @@ export const logOut = () => {
     }
 }
 
-export const newTask = (user,task) => {
+export const newTask = (task) => {
     return async function(dispatch) {
-        const response = await axios.post(`${bbdd_uri}/tareas.json` , { user: user, task})
+        const response = await axios.post(`${bbdd_uri}/tareas.json` , task)
     }
 }
 

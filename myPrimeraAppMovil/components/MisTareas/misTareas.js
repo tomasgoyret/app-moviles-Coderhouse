@@ -1,8 +1,7 @@
 import { View, Text, FlatList, Pressable, } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
-import { getTask } from '../../db';
-import { Input, Icon, Button } from 'react-native-elements';
+import { Input, Icon, CheckBox } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import { newTask, getTasks } from '../../store/actions';
 import styles from './stylesMisTareas';
@@ -15,13 +14,14 @@ export default function MisTareas({ navigation }) {
     const auth = useSelector(state => state.auth)
 
     const saveTask = () => {
-        dispatch(newTask("hola@hola.com", { title: "hacer otra cosa" }))
+        dispatch(newTask(task))
+        console.log("Nueva tarea agregada: "+ task.title)
     }
 
     let tareas = useSelector(state => state.misTareas)
 
 
-    const [newTask, setNewTask] = useState({
+    const [task, setTask] = useState({
         user: auth,
         title: "",
         important: false,
@@ -30,25 +30,27 @@ export default function MisTareas({ navigation }) {
         id: Math.random()
     })
 
-    console.log(newTask)
 
     const handleNewTask = (titleTask) => {
-        setNewTask({
-            ...newTask,
+        setTask({
+            ...task,
             title: titleTask
         })
     }
 
+    useEffect(()=>{
+        dispatch(getTasks())
+    },[tareas])
 
     return (
         <View style={styles.container}>
             {/* <View style={styles.containerInput}> */}
             <Input style={styles.input}
-                valuie={newTask.title}
+                valuie={task.title}
                 onChangeText={(text) => handleNewTask(text)}
                 placeholder='Ingrese la tarea que desea agregar'
                 leftIcon={
-                    <Pressable onPress={()=> console.log("add task")}>
+                    <Pressable onPress={()=> saveTask()}>
                         <Icon
                             name='add-outline'
                             type='ionicon'
@@ -64,9 +66,25 @@ export default function MisTareas({ navigation }) {
             {/* </View> */}
             {tareas.length > 0 ? <FlatList
                 data={tareas}
-                renderItem={({ item }) => (
-                    <Text>{item.title}</Text>
-                )}
+                renderItem={({ item }) => {
+                    return (
+                        <View style={styles.tasksList}>
+                            <CheckBox
+                            center={false}
+                            containerStyle={{
+                                backgroundColor: color.background,
+                                color: color.fonts
+                            }}
+                            checkedColor={color.blue}
+                            textStyle={{
+                                color: color.fonts
+                            }}
+                            title={item.title}
+                            checked={item.status === 'pending' ? false : true}
+                            onPress={() => console.log('tarea realizada')}
+                          />
+                        </View>
+                )}}
                 keyExtractor={item => item + Math.random()}
             >
 

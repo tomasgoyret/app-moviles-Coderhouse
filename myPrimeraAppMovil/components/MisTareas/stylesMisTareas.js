@@ -10,7 +10,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center"
     },
-    // containerInput: {
+    tasksList : {
+        display: 'flex',
+        width: 400
+    },
+    // containerInput: 
     //     height: 100
     // },
     // addTask: {

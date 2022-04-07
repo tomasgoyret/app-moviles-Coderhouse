@@ -2,16 +2,9 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
 import store from './store';
-import { init } from './db';
 import MainNavigator from './Navigation/MainNavigator';
 
 
-init()
-  .then(() => console.log('Database initialized'))
-  .catch((err) => {
-    console.log('Data base fail conect')
-    console.log(err)
-  })
 export default function App() {
   const [loaded] = useFonts({
     Raleway: require('./assets/fonts/static/Raleway-Medium.ttf'),

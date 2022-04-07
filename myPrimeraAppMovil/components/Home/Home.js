@@ -40,9 +40,11 @@ export default function Home({ navigation }) {
         setPickedUri(image.uri)
     }
 
+    let tareas = useSelector(state=>state.misTareas)
+
     useEffect(()=>{
         dispatch(getTasks())
-    },[])
+    },[dispatch])
 
     return (
         <View style={styles.container}>

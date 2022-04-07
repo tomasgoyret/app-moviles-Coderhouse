@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import Completed from './CompletedTask';
 import Pending from './PendingTasks';
 import styles from './styles';
-import { insertTask } from '../db';
 import { normalizeText } from 'react-native-elements/dist/helpers';
 
 export default function List() {
