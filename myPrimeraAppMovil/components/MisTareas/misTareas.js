@@ -67,7 +67,7 @@ export default function MisTareas({ navigation }) {
     
     return (
         <View style={styles.container}>
-            <FlatList
+            {tareas.length > 0 ? <FlatList
             data={tareas}
             renderItem = {({item}) => (
                 <Text>{item.title}</Text>
@@ -75,7 +75,8 @@ export default function MisTareas({ navigation }) {
             keyExtractor={item => item + Math.random()}
             >
 
-            </FlatList>
+            </FlatList> : <Text>Sin Tareas</Text> }
+            
             <Button
                 onPress={() => { saveTask() }}
                 icon={{

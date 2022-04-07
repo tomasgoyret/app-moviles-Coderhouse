@@ -9,12 +9,14 @@ import { getTasks, logOut } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Listas from '../Listas/listas';
 import * as ImagePicker from 'expo-image-picker';
+import { Link } from '@react-navigation/native';
 
 
 export default function Home({ navigation }) {
 
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
+    const usuario = auth.split("@")
 
     const [modal, setModal] = useState(false)
     const [pickedUri, setPickedUri] = useState()
@@ -49,7 +51,7 @@ export default function Home({ navigation }) {
                 <View style={styles.containerUser}>
                     <Image style={styles.imagen} source={require('../../assets/logSolo.png')} />
                     <View style={styles.containerUserData}>
-                        <Text style={styles.user}>Organizador</Text>
+                        <Text style={styles.user}>Hola {usuario[0]}</Text>
                         <Text style={styles.mail}>{auth}</Text>
                     </View>
                     <Button
