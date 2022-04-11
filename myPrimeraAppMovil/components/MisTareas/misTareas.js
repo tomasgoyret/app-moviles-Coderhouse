@@ -1,11 +1,10 @@
-import { View, Text, FlatList, Pressable, } from 'react-native';
+import { View, Text, FlatList, Pressable, Alert, } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
 import { Input, Icon, CheckBox, Button } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { newTask, getTasks, updateTask } from '../../store/actions';
+import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask } from '../../store/actions';
 import styles from './stylesMisTareas';
-
 
 
 
@@ -19,6 +18,8 @@ export default function MisTareas({ navigation }) {
     }
 
     let tareas = useSelector(state => state.misTareas)
+
+    const [tareaSelected, setTareaSelected] = useState()
 
 
     const [task, setTask] = useState({
@@ -39,20 +40,19 @@ export default function MisTareas({ navigation }) {
 
     useEffect(() => {
         dispatch(getTasks())
-    }, [])
+    }, [tareas])
 
     return (
         <View style={styles.container}>
-            <Button onPress={()=>{
-                console.log("boton")
-                dispatch(updateTask(tareas[0]))
-                }}></Button>
             <Input style={styles.input}
                 valuie={task.title}
                 onChangeText={(text) => handleNewTask(text)}
                 placeholder='Ingrese la tarea que desea agregar'
                 leftIcon={
-                    <Pressable onPress={() => saveTask()}>
+                    <Pressable onPress={() => {
+                        saveTask()
+                        Alert.alert("Tarea agregada: "+ task.title)
+                    }}>
                         <Icon
                             name='add-outline'
                             type='ionicon'
@@ -60,14 +60,12 @@ export default function MisTareas({ navigation }) {
                             color={color.fonts}
                             borderRadius={1000}
                             backgroundColor={color.darkRed}
-
                         />
                     </Pressable>
                 }
             />
             <View style={styles.containerInput}>
-                <Text >{tareas[0].date}</Text>
-                <Text>Pendientes</Text>
+                <Text style={styles.subtitles}>Pendientes</Text>
             </View>
             {tareas.length > 0 ? <FlatList
                 data={tareas}
@@ -83,26 +81,59 @@ export default function MisTareas({ navigation }) {
                                     }}
                                     checkedColor={color.blue}
                                     textStyle={{
-                                        color: color.fonts
+                                        color: color.fonts,
                                     }}
                                     title={item.title}
                                     checked={item.status === 'pending' ? false : true}
-                                    onPress={() => console.log('tarea realizada')}
-                                />
+                                    onPress={() => {
+                                        dispatch(setTaskDone(item))
+                                    }
+                                    }
+                                >
+                                </CheckBox>
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        dispatch(deleteTask(item))
+                                        Alert.alert("Tarea eliminada: " + item.title)
+                                    }}>
+                                        <Icon
+                                            name='trash-outline'
+                                            type='ionicon'
+                                            size={25}
+                                            color={color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        dispatch(setTaskImportant(item))
+                                        Alert.alert("Tarea importante: " + item.title)
+                                    }}>
+                                        <Icon
+                                            name={item.important ? 'ribbon' : 'ribbon-outline'}
+                                            type='ionicon'
+                                            size={25}
+                                            color={item.important ? color.lightRed : color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
                             </View>
                         )
                     }
                 }}
-                keyExtractor={item => item + Math.random()}
+                keyExtractor={item => item.id}
             >
 
             </FlatList> : <Text>Sin Tareas pendientes</Text>}
 
             <View style={styles.containerInput}>
-                <Text>Finalizadas</Text>
+                <Text style={styles.subtitles}>Finalizadas</Text>
             </View>
             {tareas.length > 0 ? <FlatList
                 data={tareas}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => {
                     if (item.status === 'done') {
                         return (
@@ -115,17 +146,47 @@ export default function MisTareas({ navigation }) {
                                     }}
                                     checkedColor={color.blue}
                                     textStyle={{
-                                        color: color.fonts
+                                        color: color.blue,
+                                        textDecorationLine: "line-through",
+
                                     }}
                                     title={item.title}
                                     checked={item.status === 'pending' ? false : true}
-                                    onPress={() => console.log('tarea realizada')}
+                                    onPress={() => dispatch(setTaskInProgress(item))}
                                 />
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        dispatch(deleteTask(item))
+                                        Alert.alert("Tarea eliminada: " + item.title)
+                                    }}>
+                                        <Icon
+                                            name='trash-outline'
+                                            type='ionicon'
+                                            size={25}
+                                            color={color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
+                                {/* <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        dispatch(setTaskImportant(item))
+                                        Alert.alert("Tarea eliminada: " + item.title)
+                                    }}>
+                                        <Icon
+                                            name='ribbon-outline'
+                                            type='ionicon'
+                                            size={25}
+                                            color={color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View> */}
                             </View>
                         )
                     }
                 }}
-                keyExtractor={item => item + Math.random()}
+
             >
 
             </FlatList> : <Text>Sin Tareas finalizadas</Text>}

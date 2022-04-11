@@ -63,10 +63,46 @@ export const getTasks = () => {
     }
 }
 
-export const updateTask = (tarea) => {
+export const setTaskDone = (tarea) => {
     let actualizacion = {
-        date: "tarea.date",
+        date: tarea.date,
         important: tarea.important,
+        status: "done",
+        title: tarea.title,
+        user: tarea.user
+    }
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result, `Status de la tareas ${result.title} : ${result.status}`)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
+export const setTaskInProgress = (tarea) => {
+    let actualizacion = {
+        date: tarea.date,
+        important: tarea.important,
+        status: "pending",
+        title: tarea.title,
+        user: tarea.user
+    }
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result, `Status de la tareas ${result.title} : ${result.status}`)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
+export const setTaskImportant = (tarea) => {
+    let actualizacion = {
+        date: tarea.date,
+        important: !tarea.important,
         status: tarea.status,
         title: tarea.title,
         user: tarea.user
@@ -75,7 +111,25 @@ export const updateTask = (tarea) => {
         try {
             const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
             const result = response.data
-            console.log(result)
+            console.log(result, `Status de la tareas ${result.title} : ${result.important}`)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
+export const deleteTask = (tarea) => {
+    let actualizacion = {
+        date: tarea.date,
+        important: tarea.important,
+        status: tarea.status,
+        title: tarea.title,
+        user: tarea.user
+    }
+    return async function (dispatch) {
+        try {
+            const response = await axios.delete(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result, `Tarea eliminada: ${result}`)
         } catch (err) {
             console.log(err.message)
         }

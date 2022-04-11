@@ -12,11 +12,24 @@ const styles = StyleSheet.create({
     },
     tasksList : {
         display: 'flex',
-        width: 400
+        width: 400,
+        flexDirection: "row"
+    },
+    containerIcons: {
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
     },
     input: {
          padding: 10,
          color: color.fonts
+    },
+    subtitles: {
+        color: color.fonts,
+        fontSize: 25,
+        fontFamily: "Raleway",
+        textDecorationLine: "underline",
+        marginBottom: 20
     }
 })
 
