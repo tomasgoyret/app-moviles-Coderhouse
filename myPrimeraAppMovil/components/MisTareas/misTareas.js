@@ -45,13 +45,20 @@ export default function MisTareas({ navigation }) {
     return (
         <View style={styles.container}>
             <Input style={styles.input}
-                valuie={task.title}
+                value={task.title}
                 onChangeText={(text) => handleNewTask(text)}
                 placeholder='Ingrese la tarea que desea agregar'
                 leftIcon={
                     <Pressable onPress={() => {
                         saveTask()
-                        Alert.alert("Tarea agregada: "+ task.title)
+                        Alert.alert("Tarea agregada: " + task.title)
+                        setTask({
+                            user: auth,
+                            title: "",
+                            important: false,
+                            date: "",
+                            status: "pending",
+                        })
                     }}>
                         <Icon
                             name='add-outline'
@@ -64,7 +71,7 @@ export default function MisTareas({ navigation }) {
                     </Pressable>
                 }
             />
-            <View style={styles.containerInput}>
+            <View>
                 <Text style={styles.subtitles}>Pendientes</Text>
             </View>
             {tareas.length > 0 ? <FlatList
@@ -73,24 +80,26 @@ export default function MisTareas({ navigation }) {
                     if (item.status === 'pending') {
                         return (
                             <View style={styles.tasksList}>
-                                <CheckBox
-                                    center={false}
-                                    containerStyle={{
-                                        backgroundColor: color.background,
-                                        color: color.fonts
-                                    }}
-                                    checkedColor={color.blue}
-                                    textStyle={{
-                                        color: color.fonts,
-                                    }}
-                                    title={item.title}
-                                    checked={item.status === 'pending' ? false : true}
-                                    onPress={() => {
-                                        dispatch(setTaskDone(item))
-                                    }
-                                    }
-                                >
-                                </CheckBox>
+                                <View style={styles.containerCheckbox}>
+                                    <CheckBox
+                                        center={false}
+                                        containerStyle={{
+                                            backgroundColor: color.background,
+                                            color: color.fonts
+                                        }}
+                                        checkedColor={color.blue}
+                                        textStyle={{
+                                            color: color.fonts,
+                                        }}
+                                        title={item.title}
+                                        checked={item.status === 'pending' ? false : true}
+                                        onPress={() => {
+                                            dispatch(setTaskDone(item))
+                                        }
+                                        }
+                                    >
+                                    </CheckBox>
+                                </View>
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(deleteTask(item))
@@ -128,7 +137,7 @@ export default function MisTareas({ navigation }) {
 
             </FlatList> : <Text>Sin Tareas pendientes</Text>}
 
-            <View style={styles.containerInput}>
+            <View >
                 <Text style={styles.subtitles}>Finalizadas</Text>
             </View>
             {tareas.length > 0 ? <FlatList
@@ -138,22 +147,24 @@ export default function MisTareas({ navigation }) {
                     if (item.status === 'done') {
                         return (
                             <View style={styles.tasksList}>
-                                <CheckBox
-                                    center={false}
-                                    containerStyle={{
-                                        backgroundColor: color.background,
-                                        color: color.fonts
-                                    }}
-                                    checkedColor={color.blue}
-                                    textStyle={{
-                                        color: color.blue,
-                                        textDecorationLine: "line-through",
+                                <View style={styles.containerCheckbox}>
+                                    <CheckBox
+                                        center={false}
+                                        containerStyle={{
+                                            backgroundColor: color.background,
+                                            color: color.fonts
+                                        }}
+                                        checkedColor={color.blue}
+                                        textStyle={{
+                                            color: color.blue,
+                                            textDecorationLine: "line-through",
 
-                                    }}
-                                    title={item.title}
-                                    checked={item.status === 'pending' ? false : true}
-                                    onPress={() => dispatch(setTaskInProgress(item))}
-                                />
+                                        }}
+                                        title={item.title}
+                                        checked={item.status === 'pending' ? false : true}
+                                        onPress={() => dispatch(setTaskInProgress(item))}
+                                    />
+                                </View>
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(deleteTask(item))
@@ -171,7 +182,7 @@ export default function MisTareas({ navigation }) {
                                 {/* <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(setTaskImportant(item))
-                                        Alert.alert("Tarea eliminada: " + item.title)
+                                        Alert.alert("Tarea importante: " + item.title)
                                     }}>
                                         <Icon
                                             name='ribbon-outline'

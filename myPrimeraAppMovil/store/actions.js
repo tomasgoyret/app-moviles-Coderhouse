@@ -32,6 +32,7 @@ export const initAuthentication = () => {
         })
     }
 }
+
 export const logOut = () => {
     return async function (dispatch) {
         const auth = await AsyncStorage.removeItem('@auth')
@@ -81,6 +82,7 @@ export const setTaskDone = (tarea) => {
         }
     }
 }
+
 export const setTaskInProgress = (tarea) => {
     let actualizacion = {
         date: tarea.date,
@@ -99,6 +101,7 @@ export const setTaskInProgress = (tarea) => {
         }
     }
 }
+
 export const setTaskImportant = (tarea) => {
     let actualizacion = {
         date: tarea.date,
@@ -117,6 +120,7 @@ export const setTaskImportant = (tarea) => {
         }
     }
 }
+
 export const deleteTask = (tarea) => {
     let actualizacion = {
         date: tarea.date,

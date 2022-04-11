@@ -10,10 +10,13 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center"
     },
-    tasksList : {
+    tasksList: {
         display: 'flex',
         width: 400,
         flexDirection: "row"
+    },
+    containerCheckbox: {
+        width: 350
     },
     containerIcons: {
         display: "flex",
@@ -21,8 +24,8 @@ const styles = StyleSheet.create({
         alignContent: "center",
     },
     input: {
-         padding: 10,
-         color: color.fonts
+        padding: 10,
+        color: color.fonts
     },
     subtitles: {
         color: color.fonts,
