@@ -16,24 +16,26 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     containerCheckbox: {
-        width: 300
+        width: 330
     },
     containerIcons: {
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: 3.5
     },
     input: {
         padding: 10,
         color: color.fonts
     },
     subtitles: {
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
         color: color.fonts,
         fontSize: 25,
-        fontFamily: "Raleway",
-        textDecorationLine: "underline",
-        marginBottom: 20
+        fontFamily: "RalewayLightItalic",
+        marginBottom: 20,
+        marginTop: 30
     }
 })
 

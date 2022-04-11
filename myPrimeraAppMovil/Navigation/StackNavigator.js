@@ -29,7 +29,7 @@ const StackNavigator = () => {
             
         >
             <Stack.Screen options={{headerShown:false}} name='Home' component={Home} />
-            <Stack.Screen name='Importante' component={Importante} />
+            <Stack.Screen name='Importantes' component={Importante} />
             <Stack.Screen name='MiDia' component={MiDia} />
             <Stack.Screen name='Mis tareas' component={MisTareas} />
             <Stack.Screen name='Nueva tarea' component={List} />

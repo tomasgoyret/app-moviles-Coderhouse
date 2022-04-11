@@ -86,13 +86,13 @@ export default function Home({ navigation }) {
                         />
                         <Text style={styles.navText}>Mi día </Text>
                     </Pressable>
-                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Importante') }}>
+                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Importantes') }}>
                         <Icon
                             name="star-outline"
                             type='ionicon'
                             color={`${color.fonts}`}
                         />
-                        <Text style={styles.navText}>Importante </Text>
+                        <Text style={styles.navText}>Importantes </Text>
                     </Pressable>
                     <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
                         <Icon

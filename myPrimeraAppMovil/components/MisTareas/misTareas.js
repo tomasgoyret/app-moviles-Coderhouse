@@ -1,26 +1,23 @@
 import { View, Text, FlatList, Pressable, Alert, } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
-import { Input, Icon, CheckBox, Button } from 'react-native-elements';
+import { Input, Icon, CheckBox } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask } from '../../store/actions';
 import styles from './stylesMisTareas';
+import { ListItemBase } from 'react-native-elements/dist/list/ListItemBase';
 
 
 
-export default function MisTareas({ navigation }) {
+export default function MisTareas({ }) {
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
+    let tareas = useSelector(state => state.misTareas)
 
     const saveTask = () => {
         dispatch(newTask(task))
         console.log("Nueva tarea agregada: " + task.title)
     }
-
-    let tareas = useSelector(state => state.misTareas)
-
-    const [tareaSelected, setTareaSelected] = useState()
-
 
     const [task, setTask] = useState({
         user: auth,
@@ -128,6 +125,19 @@ export default function MisTareas({ navigation }) {
                                         />
                                     </Pressable>
                                 </View>
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        Alert.alert("Tarea a realizar el: " + item.date)
+                                    }}>
+                                        <Icon
+                                            name={'calendar-outline'}
+                                            type='ionicon'
+                                            size={25}
+                                            color={color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
                             </View>
                         )
                     }
@@ -158,7 +168,6 @@ export default function MisTareas({ navigation }) {
                                         textStyle={{
                                             color: color.blue,
                                             textDecorationLine: "line-through",
-
                                         }}
                                         title={item.title}
                                         checked={item.status === 'pending' ? false : true}
@@ -179,20 +188,34 @@ export default function MisTareas({ navigation }) {
                                         />
                                     </Pressable>
                                 </View>
-                                {/* <View style={styles.containerIcons}>
+                                <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(setTaskImportant(item))
                                         Alert.alert("Tarea importante: " + item.title)
                                     }}>
                                         <Icon
-                                            name='ribbon-outline'
+                                            name={item.important ? 'ribbon' : 'ribbon-outline'}
+                                            type='ionicon'
+                                            size={25}
+                                            color={item.important ? color.lightRed : color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
+
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        Alert.alert("Tarea a realizar el: " + item.date)
+                                    }}>
+                                        <Icon
+                                            name={'calendar-outline'}
                                             type='ionicon'
                                             size={25}
                                             color={color.fonts}
                                             borderRadius={1000}
                                         />
                                     </Pressable>
-                                </View> */}
+                                </View>
                             </View>
                         )
                     }
