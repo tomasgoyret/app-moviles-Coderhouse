@@ -23,8 +23,6 @@ export default function Home({ navigation }) {
         dispatch(getTasks())
     }, [found])
 
-    console.log(found)
-
     return (
         <View style={styles.container}>
             <View>
@@ -115,7 +113,6 @@ export default function Home({ navigation }) {
                             <Pressable
                                 onPress={() => {
                                     let tareaBuscada = tareas.filter((e) => e.title.toLowerCase().includes(search.toLowerCase()))
-                                    console.log(tareaBuscada.length)
                                     if (tareaBuscada.length == 0){
                                         setFound(undefined)
                                     } else {

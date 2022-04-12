@@ -21,11 +21,15 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.codehouse.checked",
+      "versionCode":1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/edddd4.png",
         "backgroundColor": "#283d3b"
-      }
+      },
+      "permissions": ["WRITE_EXTERNAL_STORAGE"]
     },
+  
     "web": {
       "favicon": "./assets/favicon.png"
     }
