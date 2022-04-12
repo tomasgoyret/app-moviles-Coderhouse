@@ -3,17 +3,22 @@ import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
 import { Input, Icon, CheckBox } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask } from '../../store/actions';
-import styles from './stylesMiDia';
+import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask, setTaskAnotherDay } from '../../store/actions';
+import styles from './stylesPlaneadas';
 
 
-
-export default function MiDia () {
+export default function Planeadeas() {
 
     const dispatch = useDispatch()
     let tareas = useSelector(state => state.misTareas)
-    let today = new Date()
-    let hoy = today.toDateString()
+    tareas = tareas.sort((prev,post) => {
+        if(prev.date < post.date) {
+            return -1
+        } else if (prev.date > post.date){
+            return 1
+        } else return 0
+    })
+    //let hoy = today.toDateString()
 
     useEffect(() => {
         dispatch(getTasks())
@@ -21,13 +26,13 @@ export default function MiDia () {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.subtitles}> Tareas para el día de hoy </Text>
-            <Text style={styles.subtitles}> {hoy} </Text>
+            <Text style={styles.subtitles}> Cronograma de tareas </Text>
             {tareas.length>0 ? <FlatList
                 data={tareas}
                 renderItem={({ item }) => {
-                    let date1 = new Date(item.date)
-                    if (hoy === date1.toDateString()) {
+                    if (item.date) {
+                        let today = item.date.split("T")
+                        let dia = today[0].split("-")
                         return (
                             <View style={styles.tasksList}>
                                 <View style={styles.containerCheckbox}>
@@ -44,7 +49,7 @@ export default function MiDia () {
                                             color: color.blue,
                                             textDecorationLine: "line-through",
                                         }}
-                                        title={item.title}
+                                        title={item.title + "    " + dia[2]+"-"+dia[1]+"-"+dia[0]}
                                         checked={item.status === 'pending' ? false : true}
                                         onPress={() => {
                                             if(item.status === "pending"){
@@ -86,6 +91,20 @@ export default function MiDia () {
                                         />
                                     </Pressable>
                                 </View>
+                                <View style={styles.containerIcons}>
+                                    <Pressable onPress={() => {
+                                        dispatch(setTaskAnotherDay(item,""))
+                                        Alert.alert("Fecha eliminada: Tarea " + item.title)
+                                    }}>
+                                        <Icon
+                                            name={'calendar-outline'}
+                                            type='ionicon'
+                                            size={25}
+                                            color={item.date ? color.lightRed : color.fonts}
+                                            borderRadius={1000}
+                                        />
+                                    </Pressable>
+                                </View>
                             </View>
                         )
                     }
@@ -96,6 +115,4 @@ export default function MiDia () {
             </FlatList> : <Text style={styles.subtitles}>No hay tareas importantes</Text>}
         </View>
     )
-
 }
-

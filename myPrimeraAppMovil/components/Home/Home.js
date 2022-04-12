@@ -94,7 +94,7 @@ export default function Home({ navigation }) {
                         />
                         <Text style={styles.navText}>Importantes </Text>
                     </Pressable>
-                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mis tareas') }}>
+                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Planeadas') }}>
                         <Icon
                             name="calendar-outline"
                             type='ionicon'

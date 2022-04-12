@@ -6,6 +6,7 @@ import List from '../components/List';
 import Importante from '../components/Importante/Importante'
 import Home from '../components/Home/Home';
 import color from "../assets/variablesDeEstilo/colors";
+import Planeadeas from "../components/Planeadas/Planeadas";
 
 
 
@@ -32,7 +33,7 @@ const StackNavigator = () => {
             <Stack.Screen name='Importantes' component={Importante} />
             <Stack.Screen name='Mi Dia' component={MiDia} />
             <Stack.Screen name='Mis tareas' component={MisTareas} />
-            <Stack.Screen name='Nueva tarea' component={List} />
+            <Stack.Screen name='Planeadas' component={Planeadeas} />
         </Stack.Navigator>
 
     )

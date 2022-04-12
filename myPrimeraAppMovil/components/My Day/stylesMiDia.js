@@ -14,10 +14,11 @@ const styles = StyleSheet.create({
         display: 'flex',
         width: 400,
         flexDirection: "row",
-        marginTop:60
+        
     },
     containerCheckbox: {
-        width: 330
+        width: 330,
+        // marginTop:60
     },
     containerIcons: {
         display: "flex",
@@ -27,6 +28,13 @@ const styles = StyleSheet.create({
     input: {
         padding: 10,
         color: color.fonts
+    },
+    container: {
+        display:"flex",
+        margin: 0,
+        padding: 0,
+        backgroundColor: color.background,
+        alignItems: "center"
     },
     subtitles: {
         display: "flex",
