@@ -5,8 +5,6 @@ import { Input, Icon, CheckBox, Button } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask, setTaskToday, setTaskAnotherDay } from '../../store/actions';
 import styles from './stylesMisTareas';
-import { DateTimePicker } from '@react-native-community/datetimepicker';
-//import SetDate from './setDate';
 
 export default function MisTareas({ }) {
     const dispatch = useDispatch()
