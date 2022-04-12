@@ -1,13 +1,12 @@
-import { View, Text, FlatList, Pressable, Alert, } from 'react-native';
+import { View, Text, FlatList, Pressable, Alert, Modal } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../../assets/variablesDeEstilo/colors';
-import { Input, Icon, CheckBox } from 'react-native-elements';
+import { Input, Icon, CheckBox, Button } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask } from '../../store/actions';
+import { newTask, getTasks, setTaskDone, setTaskInProgress, setTaskImportant, deleteTask, setTaskToday, setTaskAnotherDay  } from '../../store/actions';
 import styles from './stylesMisTareas';
-import { ListItemBase } from 'react-native-elements/dist/list/ListItemBase';
-
-
+import { DateTimePicker } from '@react-native-community/datetimepicker';
+//import SetDate from './setDate';
 
 export default function MisTareas({ }) {
     const dispatch = useDispatch()
@@ -19,6 +18,7 @@ export default function MisTareas({ }) {
         console.log("Nueva tarea agregada: " + task.title)
     }
 
+    
     const [task, setTask] = useState({
         user: auth,
         title: "",
@@ -27,6 +27,10 @@ export default function MisTareas({ }) {
         status: "pending",
     })
 
+    const [modal,setModal] = useState(false)
+    const [newDate,setNewDate] = useState(new Date())
+    const [input,setInput] = useState(false)
+    const [taskSelected,setTaskSelected] = useState("")
 
     const handleNewTask = (titleTask) => {
         setTask({
@@ -35,9 +39,14 @@ export default function MisTareas({ }) {
         })
     }
 
+    const handleModal = () => {
+       return setModal(!modal)
+    }
+
     useEffect(() => {
         dispatch(getTasks())
     }, [tareas])
+
 
     return (
         <View style={styles.container}>
@@ -127,13 +136,14 @@ export default function MisTareas({ }) {
                                 </View>
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
-                                        Alert.alert("Tarea a realizar el: " + item.date)
+                                        setTaskSelected(item)
+                                        handleModal()
                                     }}>
                                         <Icon
                                             name={'calendar-outline'}
                                             type='ionicon'
                                             size={25}
-                                            color={color.fonts}
+                                            color={item.date.length > 0 ? color.lightRed : color.fonts}
                                             borderRadius={1000}
                                         />
                                     </Pressable>
@@ -205,13 +215,14 @@ export default function MisTareas({ }) {
 
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
-                                        Alert.alert("Tarea a realizar el: " + item.date)
+                                        setTaskSelected(item)
+                                        handleModal()
                                     }}>
                                         <Icon
                                             name={'calendar-outline'}
                                             type='ionicon'
                                             size={25}
-                                            color={color.fonts}
+                                            color={item.date.length > 0 ? color.lightRed : color.fonts}
                                             borderRadius={1000}
                                         />
                                     </Pressable>
@@ -224,6 +235,100 @@ export default function MisTareas({ }) {
             >
 
             </FlatList> : <Text>Sin Tareas finalizadas</Text>}
+
+            <Modal animationType='slide' visible={modal}>
+                {/* //<SetDate taskSelected={taskSelected} ></SetDate> */}
+                <View style={styles.containerModal}>
+                <Text style={styles.titleModal}> ¿Cuando quieres realizar esta tarea?: {taskSelected.title}</Text>
+                <Button
+                    onPress={() => { 
+                        dispatch(setTaskToday(taskSelected))
+                        Alert.alert("Tarea agregada a Mi día")
+                        setTaskSelected("")
+                        handleModal()
+                     }}
+                    icon={{
+                        name: "sunny-outline",
+                        type: 'ionicon',
+                        size: 20,
+                        color: 'white',
+                    }}
+                    title="Hoy"
+                    buttonStyle={{
+                        backgroundColor: color.background,
+                        borderWidth: 1,
+                        borderColor: color.fonts,
+                        borderRadius: 30,
+                    }}
+                    containerStyle={{
+                        width: 250,
+                        marginHorizontal: 50,
+                        marginVertical: 10,
+                    }}
+                    titleStyle={{ color: color.fonts }}
+                />
+                <Button
+                    onPress={() => { 
+                        setInput(true)
+                     }}
+                    icon={{
+                        name: "today-outline",
+                        type: 'ionicon',
+                        size: 20,
+                        color: 'white',
+                    }}
+                    title="Otra fecha"
+                    buttonStyle={{
+                        backgroundColor: color.background,
+                        borderWidth: 1,
+                        borderColor: color.fonts,
+                        borderRadius: 30,
+                    }}
+                    containerStyle={{
+                        width: 250,
+                        marginHorizontal: 50,
+                        marginVertical: 10,
+                    }}
+                    titleStyle={{ color: color.fonts }}
+                />
+                <Button
+                    onPress={() => { 
+                        setModal(false)
+                     }}
+                    icon={{
+                        name: "arrow-back-outline",
+                        type: 'ionicon',
+                        size: 20,
+                        color: 'white',
+                    }}
+                    title="Volver"
+                    buttonStyle={{
+                        backgroundColor: color.background,
+                        borderWidth: 1,
+                        borderColor: color.fonts,
+                        borderRadius: 30,
+                    }}
+                    containerStyle={{
+                        width: 250,
+                        marginHorizontal: 50,
+                        marginVertical: 10,
+                    }}
+                    titleStyle={{ color: color.fonts }}
+                />
+                {input ? <Text> Holaaaa</Text>
+            // <DateTimePicker 
+            //     value={newDate}
+            //     dateFormat="day month year"
+            //     // onChange={(e,date) =>{
+            //     //     setNewDate(date)
+            //     //     setTaskAnotherDay(taskSelected,newDate)
+            //     //     setInput(false)
+            //     // }}
+            // ></DateTimePicker>
+            : <Text> Hola</Text>}
+            </View>
+        
+            </Modal>
         </View>
     )
 

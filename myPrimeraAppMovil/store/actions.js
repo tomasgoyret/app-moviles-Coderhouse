@@ -121,6 +121,44 @@ export const setTaskImportant = (tarea) => {
     }
 }
 
+export const setTaskToday = (tarea) => {
+    let actualizacion = {
+        date: new Date(),
+        important: tarea.important,
+        status: tarea.status,
+        title: tarea.title,
+        user: tarea.user
+    }
+    console.log(actualizacion.date)
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result, `Fecha de la tarea: ${result.date}`)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
+export const setTaskAnotherDay = (tarea, newDate) => {
+    let actualizacion = {
+        date: newDate,
+        important: tarea.important,
+        status: tarea.status,
+        title: tarea.title,
+        user: tarea.user
+    }
+    console.log(actualizacion.date)
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${bbdd_uri}/tareas/${tarea.id}.json`, actualizacion)
+            const result = response.data
+            console.log(result, `Fecha de la tarea: ${result.date}`)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+}
 export const deleteTask = (tarea) => {
     let actualizacion = {
         date: tarea.date,
