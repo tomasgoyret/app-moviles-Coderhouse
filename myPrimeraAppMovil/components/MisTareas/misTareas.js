@@ -59,6 +59,8 @@ export default function MisTareas({ }) {
 
     return (
         <View style={styles.container}>
+
+            {/* Input para la creacion de nuevas tareas */}
             <Input style={styles.input}
                 value={task.title}
                 onChangeText={(text) => handleNewTask(text)}
@@ -86,9 +88,11 @@ export default function MisTareas({ }) {
                     </Pressable>
                 }
             />
+            {/* Subtitulo de tareas pendientes */}
             <View>
                 <Text style={styles.subtitles}>Pendientes</Text>
             </View>
+            {/* Lista de tareas pendientes */}
             {tareas.length > 0 ? <FlatList
                 data={tareas}
                 renderItem={({ item }) => {
@@ -96,6 +100,7 @@ export default function MisTareas({ }) {
                         return (
                             <View style={styles.tasksList}>
                                 <View style={styles.containerCheckbox}>
+                                    {/* Checkbox de realizacion de tareas */}
                                     <CheckBox
                                         center={false}
                                         containerStyle={{
@@ -115,6 +120,8 @@ export default function MisTareas({ }) {
                                     >
                                     </CheckBox>
                                 </View>
+
+                                {/* Boton de eliminar tarea */}
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(deleteTask(item))
@@ -129,6 +136,8 @@ export default function MisTareas({ }) {
                                         />
                                     </Pressable>
                                 </View>
+
+                                {/* Boton de tarea importante */}
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         dispatch(setTaskImportant(item))
@@ -143,6 +152,8 @@ export default function MisTareas({ }) {
                                         />
                                     </Pressable>
                                 </View>
+
+                                {/* Boton de fecha de tarea*/}
                                 <View style={styles.containerIcons}>
                                     <Pressable onPress={() => {
                                         setTaskSelected(item)
@@ -245,8 +256,10 @@ export default function MisTareas({ }) {
 
             </FlatList> : <Text style={styles.subtitles}>Sin Tareas finalizadas</Text>}
 
+
+            {/* Modal para setear fecha de tarea */}
+
             <Modal animationType='fade' statusBarTranslucent={true} visible={modal}>
-                {/* //<SetDate taskSelected={taskSelected} ></SetDate> */}
                 <View style={styles.containerModal}>
                     <Text style={styles.titleModal}> ¿Cuando quieres realizar esta tarea?: {taskSelected.title}</Text>
                     <Button
@@ -323,11 +336,11 @@ export default function MisTareas({ }) {
                                 })} placeholder='día'></Input>
                             <Button
                                 onPress={() => {
-                                    var nuevaFecha = new Date(newDate.year, newDate.month-1,newDate.day)
-                                    if(nuevaFecha.getTime() < hoy.getTime()) {
+                                    var nuevaFecha = new Date(newDate.year, newDate.month - 1, newDate.day)
+                                    if (nuevaFecha.getTime() < hoy.getTime()) {
                                         Alert.alert("La fecha ingresada no puede ser anterior a la actual")
                                     } else {
-                                        dispatch(setTaskAnotherDay(taskSelected,nuevaFecha))
+                                        dispatch(setTaskAnotherDay(taskSelected, nuevaFecha))
                                         setInput(!input)
                                         setModal(!modal)
                                         setNewDate({
