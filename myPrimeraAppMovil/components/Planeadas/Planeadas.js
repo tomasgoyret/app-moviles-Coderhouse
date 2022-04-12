@@ -112,7 +112,7 @@ export default function Planeadeas() {
                 keyExtractor={item => item.id}
             >
 
-            </FlatList> : <Text style={styles.subtitles}>No hay tareas importantes</Text>}
+            </FlatList> : <Text style={styles.subtitles}>No hay tareas programadas</Text>}
         </View>
     )
 }

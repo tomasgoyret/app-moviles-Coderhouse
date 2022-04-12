@@ -164,7 +164,7 @@ export default function MisTareas({ }) {
                 keyExtractor={item => item.id}
             >
 
-            </FlatList> : <Text>Sin Tareas pendientes</Text>}
+            </FlatList> : <Text style={styles.subtitles}>Sin Tareas pendientes</Text>}
 
             <View >
                 <Text style={styles.subtitles}>Finalizadas</Text>
@@ -243,7 +243,7 @@ export default function MisTareas({ }) {
 
             >
 
-            </FlatList> : <Text>Sin Tareas finalizadas</Text>}
+            </FlatList> : <Text style={styles.subtitles}>Sin Tareas finalizadas</Text>}
 
             <Modal animationType='fade' statusBarTranslucent={true} visible={modal}>
                 {/* //<SetDate taskSelected={taskSelected} ></SetDate> */}
@@ -361,15 +361,6 @@ export default function MisTareas({ }) {
                             />
 
                         </View> : <Text></Text>}
-                    {/* <DateTimePicker 
-            //     value={newDate}
-            //     dateFormat="day month year"
-            //     // onChange={(e,date) =>{
-                //     //     setNewDate(date)
-                //     //     setTaskAnotherDay(taskSelected,newDate)
-                //     //     setInput(false)
-                //     // }}
-                // ></DateTimePicker> */}
                     <Button
                         onPress={() => {
                             setModal(false)

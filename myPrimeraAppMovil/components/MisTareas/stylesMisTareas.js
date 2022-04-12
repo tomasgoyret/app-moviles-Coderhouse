@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     subtitles: {
         color: color.fonts,
         fontSize: 25,
-        fontFamily: "Raleway",
+        fontFamily: "RalewayLightItalic",
         textDecorationLine: "underline",
         marginBottom: 20
     },

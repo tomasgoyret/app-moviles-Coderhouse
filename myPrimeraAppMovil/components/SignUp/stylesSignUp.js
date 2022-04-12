@@ -17,11 +17,13 @@ const styles = StyleSheet.create({
     },
     input: {
         padding: 10,
+        color: color.fonts
 
     },
     inputPassword: {
         paddingLeft: 10,
-        paddingBottom: 0
+        paddingBottom: 0,
+        color: color.fonts
     },
     containerButtoms: {
         marginTop: 40,

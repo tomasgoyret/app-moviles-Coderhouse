@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
         color: color.fonts
     },
     container: {
-        display:"flex",
         margin: 0,
         padding: 0,
         backgroundColor: color.background,
+        flex: 1,
         alignItems: "center"
     },
     subtitles: {

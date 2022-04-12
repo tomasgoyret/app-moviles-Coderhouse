@@ -98,6 +98,7 @@ export default function SignUp({navigation}) {
                 value={newUser.confirmPassword}
                 onChangeText={(e) => {handleConfirmPassword(e)}}
                 secureTextEntry
+                autoCapitalize="none"
             />
 
             <View style={styles.containerButtoms}>

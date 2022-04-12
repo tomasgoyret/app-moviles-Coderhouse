@@ -2,7 +2,6 @@ import React from "react";
 import MiDia from '../components/My Day/MiDia';
 import MisTareas from '../components/MisTareas/misTareas';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import List from '../components/List';
 import Importante from '../components/Importante/Importante'
 import Home from '../components/Home/Home';
 import color from "../assets/variablesDeEstilo/colors";
