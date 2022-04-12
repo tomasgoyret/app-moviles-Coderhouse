@@ -3,6 +3,7 @@
     "name": "Checked",
     "slug": "Checked",
     "version": "1.0.0",
+    "platforms": ["ios","android"],
     "orientation": "portrait",
     "icon": "./assets/edddd4.png",
     "splash": {
