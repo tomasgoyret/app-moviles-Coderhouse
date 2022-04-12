@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         height: 60,
     },
     navText: {
-        fontSize: 15,
+        fontSize: 20,
         color: color.fonts,
         fontFamily: fuente.regular,
         marginTop: 7,
