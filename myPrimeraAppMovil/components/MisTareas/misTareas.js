@@ -322,18 +322,18 @@ export default function MisTareas({ }) {
                                     year: text
                                 })
                             }}
-                                placeholder='año'></Input>
+                                placeholder='Año en formato yyyy'></Input>
                             <Input style={styles.inputDate} value={newDate.month}
                                 onChangeText={(text) => setNewDate({
                                     ...newDate,
                                     month: text
                                 })}
-                                placeholder='mes'></Input>
+                                placeholder='Mes en formato mm'></Input>
                             <Input style={styles.inputDate} value={newDate.day}
                                 onChangeText={(text) => setNewDate({
                                     ...newDate,
                                     day: text
-                                })} placeholder='día'></Input>
+                                })} placeholder='Día en formato dd'></Input>
                             <Button
                                 onPress={() => {
                                     var nuevaFecha = new Date(newDate.year, newDate.month - 1, newDate.day)
@@ -367,7 +367,7 @@ export default function MisTareas({ }) {
                                 }}
                                 containerStyle={{
                                     width: 250,
-                                    marginHorizontal: 50,
+                                    marginHorizontal: 25,
                                     marginVertical: 10,
                                 }}
                                 titleStyle={{ color: color.fonts }}
