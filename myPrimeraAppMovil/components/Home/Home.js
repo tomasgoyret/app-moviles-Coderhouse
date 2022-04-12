@@ -1,15 +1,12 @@
-import { Text, View, Image, Pressable, Alert, FlatList, Modal } from 'react-native';
+import { Text, View, Image, Pressable, Alert, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styleHome';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import color from '../../assets/variablesDeEstilo/colors';
-import fuente from '../../assets/variablesDeEstilo/fonts';
 import { getTasks, logOut } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import Listas from '../Listas/listas';
-import * as ImagePicker from 'expo-image-picker';
-import { Link } from '@react-navigation/native';
+import { CheckBox, Input } from 'react-native-elements';
 
 
 export default function Home({ navigation }) {
@@ -18,37 +15,18 @@ export default function Home({ navigation }) {
     const auth = useSelector(state => state.auth)
     const usuario = auth.split("@")
 
-    const [modal, setModal] = useState(false)
-    const [pickedUri, setPickedUri] = useState()
+    let tareas = useSelector(state => state.misTareas)
+    const [search, setSearch] = useState()
+    const [found, setFound] = useState()
 
-    var foto = '../../assets/logSolo.png'
-    const handlePermission = async () => {
-        const { granted } = await ImagePicker.requestCameraPermissionsAsync()
-        if (granted) return true;
-        Alert.alert('Debes otorgar permisos a la camara')
-        return false
-    }
-
-    const handleTakeImage = async () => {
-        const cameraOk = await handlePermission()
-        if (!cameraOk) return;
-        const image = await ImagePicker.launchCameraAsync({
-            allowsEditing: true,
-            aspect: [16, 16],
-            quality: 0.8
-        })
-        setPickedUri(image.uri)
-    }
-
-    let tareas = useSelector(state=>state.misTareas)
-
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getTasks())
-    },[])
+    }, [found])
+
+    console.log(found)
 
     return (
         <View style={styles.container}>
-
             <View>
                 <View style={styles.containerUser}>
                     <Image style={styles.imagen} source={require('../../assets/logSolo.png')} />
@@ -129,100 +107,105 @@ export default function Home({ navigation }) {
                 </View>
 
                 <View style={styles.containerBoton}>
-                    <Button
-                        // onPress={async () => {
-                        //     dispatch(createList({ name: "Compras del Super 3" }))
-                        //     navigation.push("Home")
-                        // }}
-                        buttonStyle={{
-                            borderRadius: 50,
-                            width: 140,
-                            height: 50,
-                            marginLeft: 20
-                        }}
-                        icon={{
-                            name: 'add-circle',
-                            type: 'ionicon',
-                            size: 25,
-                            color: 'white',
-                        }}
-                        titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}` }}
-                        title=' Nueva Lista' />
-                    <Listas />
-
-
-
-                </View>
-
-                <Modal animationType='slide' visible={modal}>
-                    <View>
-                        <View>
-                            <Text>¿Desea cambiar la imagen de perfil?</Text>
-                            {/* <Text>{tareaSelected && tareaSelected.tarea}</Text> */}
-                        </View>
-                        <View>
-                            <Button
-                                onPress={() => setModal(false)}
-                                buttonStyle={{
-                                    borderRadius: 50,
-                                    width: 140,
-                                    height: 50,
-                                    marginLeft: 20
-                                }}
-                                icon={{
-                                    name: "arrow-back-circle-outline",
-                                    type: 'ionicon',
-                                    size: 25,
-                                    color: 'black',
-                                }}
-                                titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}`, color: 'black' }}
-                                title='Volver' />
-                            <Button
-                                onPress={() => handleTakeImage()}
-                                buttonStyle={{
-                                    borderRadius: 50,
-                                    width: 140,
-                                    height: 50,
-                                    marginLeft: 20
-                                }}
-                                icon={{
-                                    name: "camera-outline",
-                                    type: 'ionicon',
-                                    size: 25,
-                                    color: 'black',
-                                }}
-                                titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}`, color: 'black' }}
-                                title='Tomar foto' />
-                        </View>
-                        <View>
-                            <Text>
-                                Vista previa
-                            </Text>
-                            {!pickedUri ? <Text>No hay imagen cargada</Text> : <Image style={styles.imagen} source={{ uri: pickedUri }}></Image>}
-                            <Button
+                    <Input style={styles.input}
+                        value={search}
+                        onChangeText={(text) => setSearch(text)}
+                        placeholder='Buscar tarea por titulo'
+                        leftIcon={
+                            <Pressable
                                 onPress={() => {
-                                    setModal(false)
-                                    setPickedUri(undefined)
-                                }}
-                                buttonStyle={{
-                                    borderRadius: 50,
-                                    width: 140,
-                                    height: 50,
-                                    marginLeft: 20
-                                }}
-                                icon={{
-                                    name: "save-outline",
-                                    type: 'ionicon',
-                                    size: 25,
-                                    color: 'black',
-                                }}
-                                titleStyle={{ fontWeight: '300', fontFamily: `${fuente.regular}`, color: 'black' }}
-                                title='Cancelar' />
-                        </View>
-                    </View>
-                </Modal>
+                                    let tareaBuscada = tareas.filter((e) => e.title.toLowerCase().includes(search.toLowerCase()))
+                                    console.log(tareaBuscada.length)
+                                    if (tareaBuscada.length == 0){
+                                        setFound(undefined)
+                                    } else {
+                                        setFound(tareaBuscada)
+                                    }
+                                }}>
+                                <Icon
+                                    name='search-outline'
+                                    type='ionicon'
+                                    size={30}
+                                    color={color.fonts}
+                                    borderRadius={1000}
+                                />
+                            </Pressable>
+                        }
+                    />
+                </View>
+                <View style={styles.containerSearch}>
+                    {found ? <FlatList
+                        data={found}
+                        renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.tasksList}>
+                                        <View style={styles.containerCheckbox}>
+                                            <CheckBox
+                                                center={false}
+                                                containerStyle={{
+                                                    backgroundColor: color.background,
+                                                    color: color.fonts
+                                                }}
+                                                checkedColor={color.blue}
+                                                textStyle={item.status === "pending" ? {
+                                                    color: color.fonts,
+                                                } : {
+                                                    color: color.blue,
+                                                    textDecorationLine: "line-through",
+                                                }}
+                                                title={item.title}
+                                                checked={item.status === 'pending' ? false : true}
+                                                onPress={() => {
+                                                    if (item.status === "pending") {
+                                                        dispatch(setTaskDone(item))
+                                                    }
+                                                    if (item.status === "done") {
+                                                        dispatch(setTaskInProgress(item))
+                                                    }
+                                                }
+                                                }
+                                            >
+                                            </CheckBox>
+                                        </View>
+                                        <View style={styles.containerIcons}>
+                                            <Pressable onPress={() => {
+                                                dispatch(deleteTask(item))
+                                                Alert.alert("Tarea eliminada: " + item.title)
+                                            }}>
+                                                <Icon
+                                                    name='trash-outline'
+                                                    type='ionicon'
+                                                    size={25}
+                                                    color={color.fonts}
+                                                    borderRadius={1000}
+                                                />
+                                            </Pressable>
+                                        </View>
+                                        <View style={styles.containerIcons}>
+                                            <Pressable onPress={() => {
+                                                dispatch(setTaskImportant(item))
+                                                Alert.alert("Tarea importante: " + item.title)
+                                            }}>
+                                                <Icon
+                                                    name={item.important ? 'ribbon' : 'ribbon-outline'}
+                                                    type='ionicon'
+                                                    size={25}
+                                                    color={item.important ? color.lightRed : color.fonts}
+                                                    borderRadius={1000}
+                                                />
+                                            </Pressable>
+                                        </View>
+                                    </View>
+                                )
+                        
+                        }}
+                        keyExtractor={item => item.id}
+                    >
+
+                    </FlatList> : <Text style={styles.subtitles}>No se encontraron tareas</Text>}
+                </View>
             </View>
-        </View>
-    )
+            </View>
+            )
 }
 

@@ -61,6 +61,37 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    tasksList: {
+        display: 'flex',
+        width: 400,
+        flexDirection: "row",
+        
+    },
+    containerCheckbox: {
+        width: 330,
+        // marginTop:60
+    },
+    containerIcons: {
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+    },
+    input: {
+        padding: 10,
+        color: color.fonts
+    },
+    subtitles: {
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        color: color.fonts,
+        fontSize: 25,
+        fontFamily: "RalewayLightItalic",
+        marginLeft: 30
+    }, 
+    containerBoton : {
+        marginTop: 30
+    }
 }
 )
 
