@@ -78,7 +78,7 @@ export default function Home({ navigation }) {
                 </View>
 
                 <View style={styles.navContainer}>
-                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('MiDia') }}>
+                    <Pressable style={styles.navOption} onPress={() => { navigation.navigate('Mi Dia') }}>
                         <Icon
                             name="sunny"
                             type='ionicon'

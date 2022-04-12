@@ -25,7 +25,8 @@ export default function MiDia () {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.subtitles}> Tareas para el día de hoy: {hoy} </Text>
+            <Text style={styles.subtitles}> Tareas para el día de hoy </Text>
+            <Text style={styles.subtitles}> {hoy} </Text>
             {tareas.length>0 ? <FlatList
                 data={tareas}
                 renderItem={({ item }) => {

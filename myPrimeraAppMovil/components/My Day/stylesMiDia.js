@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     tasksList: {
         display: 'flex',
         width: 400,
-        flexDirection: "row"
+        flexDirection: "row",
+        marginTop:60
     },
     containerCheckbox: {
         width: 330
@@ -34,8 +35,6 @@ const styles = StyleSheet.create({
         color: color.fonts,
         fontSize: 25,
         fontFamily: "RalewayLightItalic",
-        marginBottom: 20,
-        marginTop: 30
     }
 })
 
